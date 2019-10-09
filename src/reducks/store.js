@@ -1,5 +1,5 @@
 import {createStore, applyMiddleware} from 'redux';
-import promise from 'react-router-dom';
+import promise from 'redux-promise-middleware';
 
 import reducer from './reducer';
 

@@ -16,7 +16,7 @@ export default(
     <Switch>
         {/* general */}
         <Route exact path='/' component={Home} />
-        <Route path='/campaign' component={Campaign} />
+        <Route path='/campaign/:name' component={Campaign} />
         <Route path='/login' component={Login} />
         {/* logged-in */}
         <Route path='/profile' component={Profile} />

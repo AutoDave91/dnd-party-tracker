@@ -1,0 +1,89 @@
+.Campaign {
+    text-align: center;
+}
+.party {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.member {
+    margin-top: 3vh;
+    padding: 1vw;
+    border: .5px solid gray;
+    border-radius: 100px;
+    width: 45vw;
+    display: flex;
+}
+.name-class-player {
+    margin-bottom: 2vh;
+    margin-left: 1vw;
+}
+.name, .class, .player {
+    display: flex;
+    padding-left: 5%;
+}
+.slant {
+    transform: skewX(-30deg);
+    background-color: white;
+    font-size: 3vw;
+    width: 20vw;
+}
+.name {
+    transform:skewX(30deg)
+}
+.class, .ability-points {
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+.class {
+    width: 15vw;
+}
+.ability-scores{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.ability-score {
+    width: 30%;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: .7vw;
+}
+.ability-points {
+    margin-top: 1vw;
+    font-size: 2vw;
+    border: 2px solid black;
+    width: 3vw;
+    height: 2.5vw;
+    border-radius: 50%;
+    padding-top: .2vw;
+}
+.party-pics {
+    width: 40%;
+    border-radius: 50%;
+}
+.ac {
+    background-image: url('https://www.netclipart.com/pp/m/10-105367_download-shield-outline-clip-art-png-shield-transparent.png');
+}
+.hp {
+    background-image: url('https://www.clipartwiki.com/clipimg/detail/54-548941_shapes-clip-art-black-and-white-heart-shape.png');
+}
+.hp, .ac {
+    height: 50px;
+    background-size: 50px 50px;
+    width: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 11%;
+}
+.ac-hp-1, .ac-hp-2 {
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+}
