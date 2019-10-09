@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import routes from './routes';
 
 import './style/reset.css';
+import './style/responsive.css'
 import './style/app.css';
 
 function App() {

@@ -10,9 +10,10 @@
     margin-top: 3vh;
     padding: 1vw;
     border: .5px solid gray;
-    border-radius: 100px;
+    border-radius: 10vw;
     width: 45vw;
     display: flex;
+    background-color: antiquewhite;
 }
 .name-class-player {
     margin-bottom: 2vh;
@@ -22,21 +23,26 @@
     display: flex;
     padding-left: 5%;
 }
-.slant {
+.slant-top {
     transform: skewX(-30deg);
     background-color: white;
     font-size: 3vw;
     width: 20vw;
 }
+.slant-bottom {
+    transform: skewX(30deg);
+    width: 20vw;
+    height: 3vw;
+}
 .name {
     transform:skewX(30deg)
 }
-.class, .ability-points {
+.slant-bottom, .ability-points {
     background-color: rgb(75, 75, 75);
     color: white;
 }
-.class {
-    width: 15vw;
+.class, .player {
+    transform: skewX(-30deg);
 }
 .ability-scores{
     list-style: none;
@@ -70,9 +76,11 @@
 }
 .ac {
     background-image: url('https://www.netclipart.com/pp/m/10-105367_download-shield-outline-clip-art-png-shield-transparent.png');
+    mix-blend-mode: multiply;
 }
 .hp {
     background-image: url('https://www.clipartwiki.com/clipimg/detail/54-548941_shapes-clip-art-black-and-white-heart-shape.png');
+    mix-blend-mode: multiply;
 }
 .hp, .ac {
     height: 50px;

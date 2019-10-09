@@ -22,10 +22,11 @@ class Home extends Component {
         let {option} = this.state
         return(
             <main className='Home'>
-                <h1>Home</h1>
+                <h1>Welcome to AutoDave's Dungeons and Dragons Aid!</h1>
+                <h2>Please select your campaign below:</h2>
                 <select onChange={this.handleChange}>
                     <option value=''>Select Campaign</option>
-                    <option value='5eSW1'>sw5e Campaign 1</option>
+                    <option value='sw5e1'>sw5e Campaign 1</option>
                     <option value='LnD'>Luncheon in a Dungeon</option>
                     <option value='Slime'>Slimeshot</option>
                 </select>
