@@ -2,7 +2,7 @@
     .player, .ability-scores, .header-img{
         display: none;
     }
-    .slant-bottom {
+    .slant-bottom, .Header, button, .ac-title, .max, .temp, .current {
     font-size: 2vw;
     }
     .member {
@@ -17,13 +17,18 @@
     .party-pics {
         height: 20%;
     }
-    .Header, button {
-        font-size: 2vw;
-    }
     .Header {
-        height: 5vw;
+        height: 7vw;
     }
     .name-class-player {
         margin-bottom: 2vh;
+    }
+    .ac, .hp {
+        height: 10vw;
+        background-size: 7vw 7vw;
+        font-size: 3.5vw;
+    }
+    .home {
+        display: block;
     }
 }

@@ -47,12 +47,24 @@ function Full_View(props){
                     </section>
                 </ul>
                 <section className='ac-hp-1'>
-                    <h2 className='ac'>{props.member.ac}</h2>
-                    <h2 className='hp'>{props.member.max_hp}</h2>
+                    <div className='ac-group'>
+                        <h2 className='ac-title'>AC</h2>
+                        <h2 className='ac'>{props.member.ac}</h2>
+                    </div>
+                    <div className='max-hp'>
+                        <h2 className='max'>Max</h2>
+                        <h2 className='hp'>{props.member.max_hp}</h2>
+                    </div>
                 </section>
                 <section className='ac-hp-2'>
-                    <h2 className='hp'>Temp: {props.member.temp_hp}</h2>
-                    <h2 className='hp'>Current: {props.member.current_hp}</h2>
+                    <div className='temp-hp'>
+                        <h2 className='temp'>Temp</h2>
+                        <h2 className='hp'>{props.member.temp_hp}</h2>
+                    </div>
+                    <div className='current-hp'>
+                        <h2 className='current'>Current</h2>
+                        <h2 className='hp'>{props.member.current_hp}</h2>
+                    </div>
                 </section>
             </section>
         </section>
