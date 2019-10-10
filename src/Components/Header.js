@@ -33,10 +33,10 @@ class Header extends Component {
                         <h1>Tank/Healer Guide</h1>
                     </section>
                 )}
-                <section className='header-center'>
+                <Link to='/'><section className='header-center'>
                     <img className='header-img' src='https://avatars1.githubusercontent.com/u/44700233?s=460&v=4' alt='logo'/>
                     <h1>AutoDave's D&D Aid</h1>
-                </section>
+                </section></Link>
                 {this.props.reducer.user.username ? (
                     <section className='header-side'>
                         <button onClick={this.props.logout}>Logout</button>

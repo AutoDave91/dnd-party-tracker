@@ -1,5 +1,29 @@
 @media (max-width: 900px){
-    .player{
+    .player, .ability-scores, .header-img{
         display: none;
+    }
+    .slant-bottom {
+    font-size: 2vw;
+    }
+    .member {
+        flex-flow: column;
+        align-items: center;
+        width: 25vw;
+    }
+    .ac-hp-1, .ac-hp-2 {
+        margin: 0%;
+        padding: 0%;
+    }
+    .party-pics {
+        height: 20%;
+    }
+    .Header, button {
+        font-size: 2vw;
+    }
+    .Header {
+        height: 5vw;
+    }
+    .name-class-player {
+        margin-bottom: 2vh;
     }
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import Axios from 'axios';
+// import {Link} from 'react-router-dom';
+// import {connect} from 'react-redux';
+// import Axios from 'axios';
 
 class Login extends Component {
     constructor(){
