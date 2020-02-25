@@ -11,7 +11,7 @@ class Campaign extends Component {
         this.state = {
             party: [],
             hp_change: 0,
-            target: 'Geoff'
+            target: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
@@ -30,7 +30,7 @@ class Campaign extends Component {
                     party.push(this.props.reducer.data[i])
                 }
             }
-            this.setState({...this.state, party: party})
+            this.setState({...this.state, party: party, target: party[0].name})
         }
     handleChange(e){
         this.setState({[e.target.name]: e.target.value})
@@ -45,14 +45,22 @@ class Campaign extends Component {
             } else {
                 if(name === target){
                     if(e.target.name === 'heal'){
-                        partyCopy[i].current_hp += +hp_change;
+                        if(partyCopy[i].current_hp += +hp_change > partyCopy[i].max_hp){
+                            partyCopy[i].current_hp = partyCopy[i].max_hp;
+                        } else {
+                            partyCopy[i].current_hp += +hp_change;
+                        }
                     } else if(e.target.name === 'damage') {
                         if(temp_hp >= +hp_change){
                             partyCopy[i].temp_hp -= +hp_change;
                         } else {
                             let rollOver = +hp_change - temp_hp
                             partyCopy[i].temp_hp = 0;
-                            partyCopy[i].current_hp -= +rollOver;
+                            if(+rollOver > partyCopy[i].current_hp){
+                                partyCopy[i].current_hp = 0
+                            } else {
+                                partyCopy[i].current_hp -= +rollOver;
+                            }
                         }
                     } else if(e.target.name === 'temp') {
                         partyCopy[i].temp_hp += +hp_change

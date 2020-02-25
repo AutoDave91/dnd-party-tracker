@@ -20,6 +20,27 @@ function Full_View(props){
                         )}
                     </div>
                 </div>
+                
+                <section className='ac-hp-1'>
+                    <div className='ac-group'>
+                        <h2 className='ac-title'>AC</h2>
+                        <h2 className='ac'>{props.member.ac}</h2>
+                    </div>
+                    <div className='max-hp'>
+                        <h2 className='max'>Max HP</h2>
+                        <h2 className='hp'>{props.member.max_hp}</h2>
+                    </div>
+                </section>
+                <section className='ac-hp-2'>
+                    <div className='temp-hp'>
+                        <h2 className='temp'>Temp HP</h2>
+                        <h2 className='hp'>{props.member.temp_hp}</h2>
+                    </div>
+                    <div className='current-hp'>
+                        <h2 className='current'>Current HP</h2>
+                        <h2 className='hp'>{props.member.current_hp}</h2>
+                    </div>
+                </section>
                 <ul className='ability-scores'>
                     <section className='ability-score'>
                         <li>STR</li>
@@ -46,26 +67,6 @@ function Full_View(props){
                         <li className='ability-points'>{props.member.cha}</li>
                     </section>
                 </ul>
-                <section className='ac-hp-1'>
-                    <div className='ac-group'>
-                        <h2 className='ac-title'>AC</h2>
-                        <h2 className='ac'>{props.member.ac}</h2>
-                    </div>
-                    <div className='max-hp'>
-                        <h2 className='max'>Max</h2>
-                        <h2 className='hp'>{props.member.max_hp}</h2>
-                    </div>
-                </section>
-                <section className='ac-hp-2'>
-                    <div className='temp-hp'>
-                        <h2 className='temp'>Temp</h2>
-                        <h2 className='hp'>{props.member.temp_hp}</h2>
-                    </div>
-                    <div className='current-hp'>
-                        <h2 className='current'>Current</h2>
-                        <h2 className='hp'>{props.member.current_hp}</h2>
-                    </div>
-                </section>
             </section>
         </section>
     )
