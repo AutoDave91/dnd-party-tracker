@@ -107,6 +107,7 @@ class Campaign extends Component {
         return(
             <main className='Campaign'>
                 <h1>{this.props.match.params.name} Adventuring Party</h1>
+                {/* hide buttons, input, and selection if user isn't a healer */}
                 <div className='top buttons'>
                     {/* <Link to='/'><button>back to home</button></Link> */}
                     <button name='long_rest' onClick={this.handleClick}>Long Rest</button>
@@ -119,16 +120,16 @@ class Campaign extends Component {
                 </div>
                 <section className='inputs'>
                     <input name='hp_change' type='number' value={this.state.hp_change} onChange={this.handleChange}/>
+                    <select name='target' onChange={this.handleChange}>
+                        {this.state.party.map((member, i) => (
+                            <option value={member.name}>{member.name}</option>
+                        ))}
+                    </select>
                     <div>
                         <button className='damage' name='damage' onClick={this.handleClick}>damage</button>
                         <button name='temp' onClick={this.handleClick}>Temp</button>
                         <button className='heal' name='heal' onClick={this.handleClick}>healing</button>
                     </div>
-                        <select name='target' onChange={this.handleChange}>
-                            {this.state.party.map((member, i) => (
-                                <option value={member.name}>{member.name}</option>
-                            ))}
-                        </select>
                         <button name='init' onClick={this.handleClick}>Initiative</button>
                         <button name='reset' onClick={this.handleClick}>Reset Init</button>
                 </section>
@@ -137,14 +138,12 @@ class Campaign extends Component {
                         this.state.party.map((member, i) => (
                                 <h3 className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}`}</h3>
                         ))
-                    ) : (
-                        <div></div>
-                    )}
+                    ) : null }
                 </section>
                 <section className='party'>
                     {this.state.party[0] ? (
                         this.state.party.map((member, i) => (
-                            <FullView member={member} i={i} component={'Campaign'} crit={this.state.crit}/>
+                            <FullView member={member} i={i} component={'Campaign'} crit={this.state.crit} />
                         ))
                     ) : (
                         <h1>Contact AutoDave to add a party to this campaign</h1>
@@ -159,7 +158,7 @@ class Campaign extends Component {
                                 ))}
                             </section>
                         ) : (
-                            <h1 className='initiative'>Roll initiative</h1>
+                            <h1 className='roll-init'>Roll Initiative</h1>
                         )
                     ) : null}
                 </section>

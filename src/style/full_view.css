@@ -1,20 +1,31 @@
 .member {
     margin-top: 3vh;
-    padding: 1vw;
+    padding-top: 1.5vw;
+    padding-bottom: 1.5vw;
     /* border: .5px solid gray; */
-    border-radius: 10vw;
+    border-radius: 3vw;
     width: 30vw;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: antiquewhite;
+    background-color: rgb(253, 204, 143);
 }
-.initiative{
+.initiative, .roll-init{
     border: solid 1px;
     width: 30vw;
     border-radius: 10vw;
     background-color: steelblue;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-size: 150%;
+    font-family: 'Fredericka the Great', cursive;
+}
+.roll-init {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 300%;
 }
 .pic-name{
     display: flex;
@@ -138,3 +149,12 @@
     background-color: black;
     color: wheat;
 }
+/* #Healer{
+    background-color: gold;
+}
+#Damage{
+    background-color: red;
+}
+#Tank{
+    background-color: silver;
+} */
