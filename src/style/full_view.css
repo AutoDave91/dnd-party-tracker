@@ -3,7 +3,7 @@
     padding: 1vw;
     border: .5px solid gray;
     border-radius: 10vw;
-    width: 45vw;
+    width: 30vw;
     display: flex;
     background-color: antiquewhite;
 }
@@ -18,13 +18,14 @@
 .slant-top {
     transform: skewX(-30deg);
     background-image: linear-gradient(white, silver);
-    font-size: 3vw;
-    width: 20vw;
+    font-size: 150%;
+    width: 11vw;
 }
 .slant-bottom {
+    margin-left: -0.2vw;
     transform: skewX(30deg);
-    width: 20vw;
-    height: 3vw;
+    font-size: 30%;
+    width: 11vw;
 }
 .name {
     transform:skewX(30deg);
@@ -36,12 +37,6 @@
 }
 .class, .player {
     transform: skewX(-30deg);
-}
-.class {
-    font-size: 2;
-}
-.player {
-    font-size: 1vw;
 }
 .ability-scores{
     list-style: none;
@@ -96,4 +91,29 @@
 .ac-hp-1, .ac-hp-2 {
     display: flex;
     justify-content: space-between;
+}
+.health{
+    display: flex;
+    justify-content: space-evenly;
+}
+.low, .ok, .downed, .half{
+    width: 10%;
+    height: 2vw;
+    font-size: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.half{
+    background-color: yellow;
+}
+.low{
+    background-color: red;
+}
+.ok{
+    background-color: green;
+}
+.downed{
+    background-color: black;
+    color: wheat;
 }

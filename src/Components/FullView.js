@@ -3,6 +3,7 @@ import React from 'react';
 import '../style/full_view.css'
 
 function Full_View(props){
+    // console.log(props.crit)
     return(
         <section className='member'>
             <img className='party-pics' src={props.member.img} alt={props.member.name} />
@@ -41,7 +42,10 @@ function Full_View(props){
                         <h2 className='hp'>{props.member.current_hp}</h2>
                     </div>
                 </section>
-                <ul className='ability-scores'>
+                {props.crit === true ? (
+                    <div></div>
+                ) : (
+                    <ul className='ability-scores'>
                     <section className='ability-score'>
                         <li>STR</li>
                         <li className='ability-points'>{props.member.str}</li>
@@ -67,6 +71,7 @@ function Full_View(props){
                         <li className='ability-points'>{props.member.cha}</li>
                     </section>
                 </ul>
+                    )}
             </section>
         </section>
     )

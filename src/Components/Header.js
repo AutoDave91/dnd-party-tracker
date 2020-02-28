@@ -20,7 +20,7 @@ class Header extends Component {
     }
 
     render(){
-        console.log(this.props.reducer)
+        // console.log(this.props.reducer)
         return(
             <main className='Header'>
                 {this.props.reducer.user.username ? (
