@@ -3,7 +3,7 @@ import React from 'react';
 import '../style/full_view.css'
 
 function Full_View(props){
-    console.log(props.member.img)
+    // console.log(props.member.img)
     return(
         <main className='member'>
             <section className='pic-name'>

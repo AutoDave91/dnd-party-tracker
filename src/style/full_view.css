@@ -10,6 +10,12 @@
 
     background-color: antiquewhite;
 }
+.initiative{
+    border: solid 1px;
+    width: 30vw;
+    border-radius: 10vw;
+    background-color: steelblue;
+}
 .pic-name{
     display: flex;
     flex-direction: column;

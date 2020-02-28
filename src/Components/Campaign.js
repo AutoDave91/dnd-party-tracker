@@ -10,6 +10,7 @@ class Campaign extends Component {
         super()
         this.state = {
             party: [],
+            initiative: [],
             hp_threshold: 5,
             hp_change: 0,
             target: '',
@@ -39,8 +40,9 @@ class Campaign extends Component {
     }
     handleClick(e){
         // console.log(this.state)
-        let {party, hp_change, target, hp_threshold} = this.state;
+        let {party, hp_change, target, hp_threshold, initiative} = this.state;
         let partyCopy = [...party]
+        let init = [...initiative]
         for(let i=0; i < partyCopy.length; i++){
             let {name, temp_hp, max_hp} =partyCopy[i]
             if(e.target.name === 'lvl_change'){
@@ -92,6 +94,13 @@ class Campaign extends Component {
             }
             this.setState({party: partyCopy, hp_change: 0})
         }
+        if(e.target.name === 'init'){
+            init.push({name: target, initiative: +hp_change});
+            init.sort((a, b) => ( a.initiative > b.initiative) ? -1 : 1)
+            this.setState({...party, hp_change: 0, initiative: init})
+        }  else if(e.target.name === 'reset'){
+            this.setState({...party, hp_change: 0, initiative: []})
+        }
     }
 
     render(){
@@ -120,6 +129,8 @@ class Campaign extends Component {
                                 <option value={member.name}>{member.name}</option>
                             ))}
                         </select>
+                        <button name='init' onClick={this.handleClick}>Initiative</button>
+                        <button name='reset' onClick={this.handleClick}>Reset Init</button>
                 </section>
                 <section className='health'>
                     {this.state.crit === true ? (
@@ -138,6 +149,19 @@ class Campaign extends Component {
                     ) : (
                         <h1>Contact AutoDave to add a party to this campaign</h1>
                     )}
+                    {this.state.crit === true ? (
+                        this.state.initiative[0] ? (
+                            <section className='initiative'>
+                                <h1>Initiative Tracker</h1>
+                                {this.state.initiative.map((member, i) =>
+                                (
+                                    <h1>{member.name}: {member.initiative}</h1>
+                                ))}
+                            </section>
+                        ) : (
+                            <h1 className='initiative'>Roll initiative</h1>
+                        )
+                    ) : null}
                 </section>
             </main>
         )
