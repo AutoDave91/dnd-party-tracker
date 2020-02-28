@@ -1,11 +1,22 @@
 .member {
     margin-top: 3vh;
     padding: 1vw;
-    border: .5px solid gray;
+    /* border: .5px solid gray; */
     border-radius: 10vw;
     width: 30vw;
     display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: antiquewhite;
+}
+.pic-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 15vw;
 }
 .name-class-player {
     margin-bottom: 2vh;
@@ -65,8 +76,11 @@
     padding-top: .2vw;
 }
 .party-pics {
-    width: 40%;
+    margin-top: 5%;
+    width: 70%;
+    height: 85%;
     border-radius: 50%;
+    border: 1px black solid;
 }
 .ac {
     background-image: url('https://www.netclipart.com/pp/m/10-105367_download-shield-outline-clip-art-png-shield-transparent.png');
@@ -95,6 +109,7 @@
 .health{
     display: flex;
     justify-content: space-evenly;
+    margin-top: 2vw;
 }
 .low, .ok, .downed, .half{
     width: 10%;

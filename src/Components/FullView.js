@@ -3,24 +3,26 @@ import React from 'react';
 import '../style/full_view.css'
 
 function Full_View(props){
-    // console.log(props.crit)
+    console.log(props.member.img)
     return(
-        <section className='member'>
-            <img className='party-pics' src={props.member.img} alt={props.member.name} />
+        <main className='member'>
+            <section className='pic-name'>
+                <img className='party-pics' src={require('../assets/' + props.member.name + '.JPG')} alt={props.member.name} />
+                    <div className='name-class-player'>
+                        <div className='slant-top'>
+                            <h1 className='name'>{props.member.name}</h1>
+                        </div>
+                        <div className='slant-bottom'>
+                            <h2 className='class'>{props.member.class} ({props.member.lvl})</h2>
+                            {props.component === 'Campaign' ? (
+                                <h2 className='player'>controlled by: {props.member.player}</h2>
+                            ) : (
+                                <h2 className='player'>{props.member.campaign}</h2>
+                            )}
+                        </div>
+                    </div>
+            </section>
             <section className='character-info'>
-                <div className='name-class-player'>
-                    <div className='slant-top'>
-                        <h1 className='name'>{props.member.name}</h1>
-                    </div>
-                    <div className='slant-bottom'>
-                        <h2 className='class'>{props.member.class} ({props.member.lvl})</h2>
-                        {props.component === 'Campaign' ? (
-                            <h2 className='player'>controlled by: {props.member.player}</h2>
-                        ) : (
-                            <h2 className='player'>{props.member.campaign}</h2>
-                        )}
-                    </div>
-                </div>
                 
                 <section className='ac-hp-1'>
                     <div className='ac-group'>
@@ -73,7 +75,7 @@ function Full_View(props){
                 </ul>
                     )}
             </section>
-        </section>
+        </main>
     )
 }
 

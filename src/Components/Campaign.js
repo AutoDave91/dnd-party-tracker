@@ -98,10 +98,14 @@ class Campaign extends Component {
         return(
             <main className='Campaign'>
                 <h1>{this.props.match.params.name} Adventuring Party</h1>
-                <div>
+                <div className='top buttons'>
                     {/* <Link to='/'><button>back to home</button></Link> */}
                     <button name='long_rest' onClick={this.handleClick}>Long Rest</button>
-                    <button name='crit_change' onClick={()=>{this.setState({crit: !this.state.crit})}}>Change View</button>
+                    {this.state.crit === false ? (
+                    <button name='crit_change' onClick={()=>{this.setState({crit: !this.state.crit})}}>Combat View</button>
+                    ) : (
+                    <button name='crit_change' onClick={()=>{this.setState({crit: !this.state.crit})}}>Full Stats</button>)
+                    }
                     <button name='lvl_change' onClick={this.handleClick}>Level up!</button>
                 </div>
                 <section className='inputs'>
@@ -118,9 +122,13 @@ class Campaign extends Component {
                         </select>
                 </section>
                 <section className='health'>
-                    {this.state.party.map((member, i) => (
-                            <h3 className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}`}</h3>
-                    ))}
+                    {this.state.crit === true ? (
+                        this.state.party.map((member, i) => (
+                                <h3 className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}`}</h3>
+                        ))
+                    ) : (
+                        <div></div>
+                    )}
                 </section>
                 <section className='party'>
                     {this.state.party[0] ? (

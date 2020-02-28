@@ -27,8 +27,6 @@ class Home extends Component {
                 <select onChange={this.handleChange}>
                     <option value=''>Select Campaign</option>
                     <option value='sw5e1'>sw5e Campaign 1</option>
-                    <option value='LnD'>Luncheon in a Dungeon</option>
-                    <option value='Slime'>Slimeshot</option>
                     <option value='TOA'>Tomb of Annihilation</option>
                 </select>
                 {option ? (
