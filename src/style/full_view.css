@@ -1,14 +1,12 @@
 .member {
-    margin-top: 3vh;
+    margin-top: 1.5vh;
     padding-top: 1.5vw;
     padding-bottom: 1.5vw;
-    /* border: .5px solid gray; */
     border-radius: 3vw;
     width: 30vw;
     display: flex;
     justify-content: center;
     align-items: center;
-
     background-color: rgb(253, 204, 143);
 }
 .initiative, .roll-init{
@@ -126,7 +124,7 @@
 .health{
     display: flex;
     justify-content: space-evenly;
-    margin-top: 2vw;
+    margin-top: .25vw;
 }
 .low, .ok, .downed, .half{
     width: 10%;
@@ -149,7 +147,7 @@
     background-color: black;
     color: wheat;
 }
-/* #Healer{
+#Healer{
     background-color: gold;
 }
 #Damage{
@@ -157,4 +155,7 @@
 }
 #Tank{
     background-color: silver;
-} */
+} 
+#Stealth{
+    background-color: grey;
+}

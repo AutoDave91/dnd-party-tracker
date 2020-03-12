@@ -106,9 +106,9 @@ class Campaign extends Component {
     render(){
         return(
             <main className='Campaign'>
-                <h1>{this.props.match.params.name} Adventuring Party</h1>
+                <h1 className='title'>{this.props.match.params.name} Adventuring Party</h1>
                 {/* hide buttons, input, and selection if user isn't a healer */}
-                <div className='top buttons'>
+                <div className='top-buttons'>
                     {/* <Link to='/'><button>back to home</button></Link> */}
                     <button name='long_rest' onClick={this.handleClick}>Long Rest</button>
                     {this.state.crit === false ? (
