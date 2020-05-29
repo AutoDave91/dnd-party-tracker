@@ -13,11 +13,19 @@ const initialState ={
         // {campaign: 'sw5e1', player: 'StormReavan', name: 'Vulcan', class: 'Operative', lvl: 4, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'},
 
         {campaign: 'TOA', player: 'AutoDave', name: 'Nortle', class: 'Druid', role: 'Healer', lvl: 1, max_hp: 10, ac: 19, current_hp: 10, temp_hp: 0, str: 12, dex: 12, con: 14, int: 13, wis: 16, cha: 8, health: 'ok'},
-        {campaign: 'TOA', player: 'Wonsnot', name: 'Shroom', class: 'Wild Magic Sorcerer', role: 'Damage', lvl: 2, max_hp: 14, ac: 11, current_hp: 14, temp_hp: 0, str: 10, dex: 13, con: 15, int: 8, wis: 12, cha: 17, health: 'ok'},
-        {campaign: 'TOA', player: 'SwordsaintIIV', name: 'Swordsaint', class: 'Fighter', role: 'Tank', lvl: 1, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'},
         {campaign: 'TOA', player: 'CodyNo', name: 'Jasdof', class: 'Barbarian', role: 'Tank', lvl: 2, max_hp: 14, ac: 15, current_hp: 14, temp_hp: 0, str: 15, dex: 14, con: 15, int: 8, wis: 11, cha: 12, health: 'ok'},
-        {campaign: 'TOA', player: 'Baum', name: 'Elaana', class: 'Ranged Fighter', role: 'Damage', lvl: 1, max_hp: 12, ac: 16, current_hp: 12, temp_hp: 0, str: 8, dex: 17, con: 14, int: 11, wis: 13, cha: 12, health: 'ok'}, 
+        {campaign: 'TOA', player: 'SwordsaintIIV', name: 'Lou', class: 'Fighter', role: 'Tank', lvl: 1, max_hp: 11, ac: 19, current_hp: 11, temp_hp: 0, str: 16, dex: 15, con: 12, int: 8, wis: 12, cha: 14, health: 'ok'},
+        {campaign: 'TOA', player: 'Wonsnot', name: 'Shroom', class: 'Wild Magic Sorcerer', role: 'Damage', lvl: 2, max_hp: 14, ac: 11, current_hp: 14, temp_hp: 0, str: 10, dex: 13, con: 15, int: 8, wis: 12, cha: 17, health: 'ok'},
+        {campaign: 'TOA', player: 'Baum', name: 'Elaana', class: 'Fighter', role: 'Damage', lvl: 1, max_hp: 12, ac: 16, current_hp: 12, temp_hp: 0, str: 8, dex: 17, con: 14, int: 11, wis: 13, cha: 12, health: 'ok'}, 
         {campaign: 'TOA', player: 'ItsVlad', name: 'Thwip', class: 'Rogue', role: 'Damage', lvl: 1, max_hp: 10, ac: 14, current_hp: 10, temp_hp: 0, str: 10, dex: 17, con: 14, int: 13, wis: 13, cha: 8, health: 'ok'}
+        ,
+        {campaign: 'Winds of Change', player: 'AutoDave', name: 'unknown', class: 'unknown', role: 'unknown', lvl: 0, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'},
+        {campaign: 'Winds of Change', player: 'CodyNo', name: 'unknown', class: 'unknown', role: 'unknown', lvl: 0, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'},
+        {campaign: 'Winds of Change', player: 'SwordsaintIIV', name: 'unknown', class: 'unknown', role: 'unknown', lvl: 0, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'},
+        {campaign: 'Winds of Change', player: 'Wonsnot', name: 'unknown', class: 'unknown', role: 'unknown', lvl: 0, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'},
+        {campaign: 'Winds of Change', player: 'Baum', name: 'unknown', class: 'unknown', role: 'unknown', lvl: 0, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'}, 
+        {campaign: 'Winds of Change', player: 'ItsVlad', name: 'unknown', class: 'unknown', role: 'unknown', lvl: 0, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'},
+        {campaign: 'Winds of Change', player: 'ml1201', name: 'unknown', class: 'unknown', role: 'unknown', lvl: 0, max_hp: 0, ac: 0, current_hp: 0, temp_hp: 0, str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0, health: 'ok'}
     ]
 }
 

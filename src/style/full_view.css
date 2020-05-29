@@ -11,19 +11,21 @@
 }
 .initiative, .roll-init{
     border: solid 1px;
-    width: 30vw;
+    width: 25vw;
     border-radius: 10vw;
-    background-color: steelblue;
+    /* background-color: rgb(75, 75, 75); */
+    background-image: linear-gradient(white, silver);
     margin-top: 2vh;
     margin-bottom: 2vh;
-    font-size: 150%;
+    font-size: 100%;
     font-family: 'Fredericka the Great', cursive;
+    color: rgb(75, 75, 75);
 }
 .roll-init {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 300%;
+    font-size: 150%;
 }
 .pic-name{
     display: flex;
@@ -147,7 +149,7 @@
     background-color: black;
     color: wheat;
 }
-#Healer{
+/* #Healer{
     background-color: gold;
 }
 #Damage{
@@ -158,4 +160,4 @@
 } 
 #Stealth{
     background-color: grey;
-}
+} */

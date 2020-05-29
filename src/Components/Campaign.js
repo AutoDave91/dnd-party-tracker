@@ -108,31 +108,50 @@ class Campaign extends Component {
             <main className='Campaign'>
                 <h1 className='title'>{this.props.match.params.name} Adventuring Party</h1>
                 {/* hide buttons, input, and selection if user isn't a healer */}
-                <div className='top-buttons'>
-                    {/* <Link to='/'><button>back to home</button></Link> */}
-                    <button name='long_rest' onClick={this.handleClick}>Long Rest</button>
-                    {this.state.crit === false ? (
-                    <button name='crit_change' onClick={()=>{this.setState({crit: !this.state.crit})}}>Combat View</button>
-                    ) : (
-                    <button name='crit_change' onClick={()=>{this.setState({crit: !this.state.crit})}}>Full Stats</button>)
-                    }
-                    <button name='lvl_change' onClick={this.handleClick}>Level up!</button>
+                <div className='top'>
+                    <section>
+                        <div className='top-buttons'>
+                            {/* <Link to='/'><button>back to home</button></Link> */}
+                            <button name='long_rest' onClick={this.handleClick}>Long Rest</button>
+                            {this.state.crit === false ? (
+                                <button name='crit_change' onClick={()=>{this.setState({crit: !this.state.crit})}}>Combat View</button>
+                                ) : (
+                                    <button name='crit_change' onClick={()=>{this.setState({crit: !this.state.crit})}}>Full Stats</button>)
+                                }
+                            <button name='lvl_change' onClick={this.handleClick}>Level up!</button>
+                        </div>
+                        <section className='inputs'>
+                            <input name='hp_change' type='number' value={this.state.hp_change} onChange={this.handleChange}/>
+                            <select name='target' onChange={this.handleChange}>
+                                {this.state.party.map((member, i) => (
+                                    <option value={member.name}>{member.name}</option>
+                                    ))}
+                            </select>
+                            <div>
+                                <button className='damage' name='damage' onClick={this.handleClick}>damage</button>
+                                <button name='temp' onClick={this.handleClick}>Temp</button>
+                                <button className='heal' name='heal' onClick={this.handleClick}>healing</button>
+                            </div>
+                                <button name='init' onClick={this.handleClick}>Initiative</button>
+                                <button name='reset' onClick={this.handleClick}>Reset Init</button>
+                        </section>
+                    </section>
+                    <section>
+                    {this.state.crit === true ? (
+                        this.state.initiative[0] ? (
+                            <section className='initiative'>
+                                <h1>Initiative Tracker</h1>
+                                {this.state.initiative.map((member, i) =>
+                                (
+                                    <h1>{member.name}: {member.initiative}</h1>
+                                ))}
+                            </section>
+                        ) : (
+                            <h1 className='roll-init'>Roll Initiative</h1>
+                        )
+                    ) : <h1 className='roll-init'>Initiative Tracker</h1>}
+                    </section>
                 </div>
-                <section className='inputs'>
-                    <input name='hp_change' type='number' value={this.state.hp_change} onChange={this.handleChange}/>
-                    <select name='target' onChange={this.handleChange}>
-                        {this.state.party.map((member, i) => (
-                            <option value={member.name}>{member.name}</option>
-                        ))}
-                    </select>
-                    <div>
-                        <button className='damage' name='damage' onClick={this.handleClick}>damage</button>
-                        <button name='temp' onClick={this.handleClick}>Temp</button>
-                        <button className='heal' name='heal' onClick={this.handleClick}>healing</button>
-                    </div>
-                        <button name='init' onClick={this.handleClick}>Initiative</button>
-                        <button name='reset' onClick={this.handleClick}>Reset Init</button>
-                </section>
                 <section className='health'>
                     {this.state.crit === true ? (
                         this.state.party.map((member, i) => (
@@ -148,7 +167,7 @@ class Campaign extends Component {
                     ) : (
                         <h1>Contact AutoDave to add a party to this campaign</h1>
                     )}
-                    {this.state.crit === true ? (
+                    {/* {this.state.crit === true ? (
                         this.state.initiative[0] ? (
                             <section className='initiative'>
                                 <h1>Initiative Tracker</h1>
@@ -160,7 +179,7 @@ class Campaign extends Component {
                         ) : (
                             <h1 className='roll-init'>Roll Initiative</h1>
                         )
-                    ) : null}
+                    ) : null} */}
                 </section>
             </main>
         )
