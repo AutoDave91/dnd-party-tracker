@@ -5,7 +5,7 @@ const session = require('express-session');
 require('dotenv').config();
 
 // CONTROLLERS
-const {getAll} = require('./controllers/characterController.js');
+const cc = require('./controllers/characterController.js');
 
 const {SERVER_PORT,
         // CONNECTION_STRING,
@@ -31,7 +31,8 @@ app.use(session({
 // .catch(()=>{console.log('Database connection failed...')})
 
 // ENDPOINTS
-app.get('/api/characters', getAll)
+app.get('/api/characters', cc.getAll)
+app.post('/api/party', cc.getParty)
 
 app.listen(SERVER_PORT, ()=> {
     console.log(`Listening on port ${SERVER_PORT}.`)

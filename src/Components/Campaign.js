@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Axios from 'axios';
 // import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -9,6 +10,7 @@ class Campaign extends Component {
     constructor(){
         super()
         this.state = {
+            campaign: '',
             party: [],
             initiative: [],
             hp_threshold: 5,
@@ -18,25 +20,41 @@ class Campaign extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
-        this.party = this.party.bind(this)
+        // this.party = this.party.bind(this)
     }
 
     componentDidMount(){
         // Axios request to pull characters in this.props.match.params.name, then setState party to the results
-        this.party()
+        // this.party()
+        // Axios.get('/api/characters')
+        //     .then(res =>{
+        //         this.setState({party: res.data});
+        //         // alert('success')
+        //     })
+        //     .catch(()=> alert('character get failed'))
+
+        let campaign = this.props.match.params.name;
+        // console.log(campaign)
+        Axios.post('/api/party/', {campaign})
+            .then(res => {
+                // console.log(campaign)
+                this.setState({party: res.data, target: res.data[0].name})
+            })
+            .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
     }
     // Axios request to send HP change to db
-    party(){
-        let party = []
-        for(let i=0; i < this.props.reducer.data.length; i++){
-            if(this.props.reducer.data[i].campaign === this.props.match.params.name){
-                party.push(this.props.reducer.data[i])
-            }
-        }
-        this.setState({...this.state, party: party, target: party[0].name})
-    }
+    // party(){
+    //     let party = []
+    //     for(let i=0; i < this.props.reducer.data.length; i++){
+    //         if(this.props.reducer.data[i].campaign === this.props.match.params.name){
+    //             party.push(this.props.reducer.data[i])
+    //         }
+    //     }
+    //     this.setState({...this.state, party: party, target: party[0].name})
+    // }
     handleChange(e){
         this.setState({[e.target.name]: e.target.value})
+        // console.log(e.target.name, e.target.value)
     }
     handleClick(e){
         // console.log(this.state)
@@ -45,14 +63,23 @@ class Campaign extends Component {
         let init = [...initiative]
         for(let i=0; i < partyCopy.length; i++){
             let {name, temp_hp, max_hp} =partyCopy[i]
+            // level up party
             if(e.target.name === 'lvl_change'){
-                partyCopy[i].lvl += 1;
-            } else if (e.target.name === 'long_rest'){
+                // need rework to lvl up individuals
+                if(name === target){
+                    partyCopy[i].lvl += 1;
+                }
+            } 
+            // Long rest to restore current HP of party to max
+            else if (e.target.name === 'long_rest'){
                 partyCopy[i].current_hp = max_hp;
                 partyCopy[i].health = 'ok';
-            } else {
+            }
+            // HP manipulation
+            else {
                 if(name === target){
                     let half = (max_hp / 2)
+                    // Healing
                     if(e.target.name === 'heal'){
                         partyCopy[i].current_hp += +hp_change;
                             if(partyCopy[i].current_hp > max_hp){
@@ -65,7 +92,9 @@ class Campaign extends Component {
                             } else {
                                 partyCopy[i].health = 'half';
                             }
-                    } else if(e.target.name === 'damage') {
+                    }
+                    // Damage
+                    else if(e.target.name === 'damage') {
                         if(temp_hp >= +hp_change){
                             partyCopy[i].temp_hp -= +hp_change;
                         } else {
@@ -76,9 +105,7 @@ class Campaign extends Component {
                                 partyCopy[i].health = 'downed';
                             } else {
                                 partyCopy[i].current_hp -= rollOver;
-                                // console.log(partyCopy[i].current_hp)
                                 if(partyCopy[i].current_hp < 1){
-                                    // console.log('hit')
                                     partyCopy[i].health = 'downed';
                                 } else if(partyCopy[i].current_hp < hp_threshold){
                                     partyCopy[i].health = 'low';
@@ -87,13 +114,16 @@ class Campaign extends Component {
                                 }
                             }
                         }
-                    } else if(e.target.name === 'temp') {
+                    }
+                    // Temp HP
+                    else if(e.target.name === 'temp') {
                         partyCopy[i].temp_hp += +hp_change
                     }
                 }
             }
             this.setState({party: partyCopy, hp_change: 0})
         }
+        // Initiative Tracker
         if(e.target.name === 'init'){
             init.push({name: target, initiative: +hp_change});
             init.sort((a, b) => ( a.initiative > b.initiative) ? -1 : 1)
