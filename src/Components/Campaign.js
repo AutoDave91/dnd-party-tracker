@@ -24,21 +24,12 @@ class Campaign extends Component {
     }
 
     componentDidMount(){
-        // Axios request to pull characters in this.props.match.params.name, then setState party to the results
-        // this.party()
-        // Axios.get('/api/characters')
-        //     .then(res =>{
-        //         this.setState({party: res.data});
-        //         // alert('success')
-        //     })
-        //     .catch(()=> alert('character get failed'))
-
         let campaign = this.props.match.params.name;
         // console.log(campaign)
         Axios.post('/api/party/', {campaign})
             .then(res => {
                 // console.log(campaign)
-                this.setState({party: res.data, target: res.data[0].name})
+                this.setState({party: res.data, target: res.data[0].name, campaign: res.data[0].campaign})
             })
             .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
     }
@@ -58,7 +49,7 @@ class Campaign extends Component {
     }
     handleClick(e){
         // console.log(this.state)
-        let {party, hp_change, target, hp_threshold, initiative} = this.state;
+        let {campaign, party, hp_change, target, hp_threshold, initiative} = this.state;
         let partyCopy = [...party]
         let init = [...initiative]
         for(let i=0; i < partyCopy.length; i++){
@@ -67,7 +58,9 @@ class Campaign extends Component {
             if(e.target.name === 'lvl_change'){
                 // need rework to lvl up individuals
                 if(name === target){
+                    let effect = 'level'
                     partyCopy[i].lvl += 1;
+                    Axios.put('/api/character', {campaign, target, effect})
                 }
             } 
             // Long rest to restore current HP of party to max
@@ -81,7 +74,9 @@ class Campaign extends Component {
                     let half = (max_hp / 2)
                     // Healing
                     if(e.target.name === 'heal'){
+                        let effect = 'heal'
                         partyCopy[i].current_hp += +hp_change;
+                            Axios.put('/api/character', {campaign, target, effect, hp_change})
                             if(partyCopy[i].current_hp > max_hp){
                                 partyCopy[i].current_hp = max_hp
                             }
@@ -96,8 +91,12 @@ class Campaign extends Component {
                     // Damage
                     else if(e.target.name === 'damage') {
                         if(temp_hp >= +hp_change){
+                            let effect = 'temp_loss'
                             partyCopy[i].temp_hp -= +hp_change;
+                            Axios.put('/api/character', {campaign, target, effect, hp_change})
                         } else {
+                            // need to make a request to reflect temp HP drain
+                            let effect = 'damage'
                             let rollOver = +hp_change - temp_hp
                             partyCopy[i].temp_hp = 0;
                             if(+rollOver > partyCopy[i].current_hp){
@@ -113,11 +112,14 @@ class Campaign extends Component {
                                     partyCopy[i].health = 'half';
                                 }
                             }
+                            Axios.put('/api/character', {campaign, target, effect, hp_change})
                         }
                     }
                     // Temp HP
                     else if(e.target.name === 'temp') {
+                        let effect = 'temp_gain'
                         partyCopy[i].temp_hp += +hp_change
+                        Axios.put('/api/character', {campaign, target, effect})
                     }
                 }
             }
