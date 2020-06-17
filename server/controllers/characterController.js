@@ -21,41 +21,27 @@ function getParty(req, res){
     let party = characters.filter(character => character.campaign === req.body.campaign)
     res.json(party)
 }
-// function to alter a character's stats.
-    // receive: campaign name, character name, stat name
-    // alter: targeted stat's value
-    // return: new party info
 function editCharacter(req, res){
-    let {target, campaign, effect, hp_change} = req.body
-    let party = characters.filter(character => character.campaign === campaign)
-    // console.log('CC30:', party)
-    // let adventurer = party.filter(character => {
-    //     console.log('CC31:', party, character.name, target);
-    //     character.name === target})
-    for(let i=0; i < party.length; i++){
-        if(party[i].name === target){
-            let member = party[i]
-            if(effect === 'level'){
-                console.log(member.name, 'leveled up')
-                member.lvl += 1
-            } else if (effect === 'damage'){
-                console.log('Ouch')
-                member.current_hp -= +hp_change
-            } else if (effect === 'heal'){
-                // need cap to keep over healing
-                console.log('That feels better')
-                member.current_hp += +hp_change
-            } else if (effect === 'temp_gain'){
-                console.log('That might help')
-                member.temp_hp += +hp_change
-            } else if (effect === 'temp_loss'){
-                console.log('Oh dear...')
-                member.temp_hp -= +hp_change
-            }
-        }
+    let {campaign, target, effect, hp_change} = req.body
+    let adventurer = characters.find(({name}) => name === target)
+    // console.log(adventurer)
+    if(effect === 'heal'){
+        if(adventurer.current_hp + +hp_change > adventurer.max_hp){
+            adventurer.current_hp = adventurer.max_hp
+        } else {adventurer.current_hp += +hp_change}
+    } else if(effect === 'damage'){
+        let rollOver = +hp_change - adventurer.temp_hp
+        adventurer.current_hp -= +rollOver
+        adventurer.temp_hp = 0
+    } else if(effect === 'temp_gain'){
+        adventurer.temp_hp += +hp_change
+    } else if(effect === 'temp_loss'){
+        adventurer.temp_hp -= +hp_change
+    } else if(effect === 'level'){
+        adventurer.lvl += 1
     }
-    // console.log('CC45:',party, effect, hp_change, req.body)
-    party = characters.filter(character => character.campaign === campaign)
+    let party = characters.filter(character => character.campaign === campaign)
+    // console.log(party)
     res.json(party)
 }
 
