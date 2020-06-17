@@ -33,16 +33,6 @@ class Campaign extends Component {
             })
             .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
     }
-    // Axios request to send HP change to db
-    // party(){
-    //     let party = []
-    //     for(let i=0; i < this.props.reducer.data.length; i++){
-    //         if(this.props.reducer.data[i].campaign === this.props.match.params.name){
-    //             party.push(this.props.reducer.data[i])
-    //         }
-    //     }
-    //     this.setState({...this.state, party: party, target: party[0].name})
-    // }
     handleChange(e){
         this.setState({[e.target.name]: e.target.value})
         // console.log(e.target.name, e.target.value)
@@ -50,92 +40,55 @@ class Campaign extends Component {
     handleClick(e){
         // console.log(this.state)
         let {campaign, party, hp_change, target, hp_threshold, initiative} = this.state;
-        let partyCopy = [...party]
         let init = [...initiative]
-        for(let i=0; i < partyCopy.length; i++){
-            let {name, temp_hp, max_hp} =partyCopy[i]
-            // level up character
-            if(e.target.name === 'lvl_change'){
-                if(name === target){
-                    let effect = 'level'
-                    // partyCopy[i].lvl += 1;
-                    Axios.put('/api/character', {campaign, target, effect})
-                        .then(res => this.setState({party: res.data}))
-                }
-            } 
+        // --------Level manipulation-------
+        if(e.target.name === 'lvl_change'){
+            let effect = 'level'
+            Axios.put('/api/character', {campaign, target, effect})
+                .then(res => this.setState({party: res.data}))
+        } 
+        // ---------HP manipulation---------
+        // Healing
+        if(e.target.name === 'heal'){
+            let effect = 'heal'
+            Axios.put('/api/character', {campaign, target, effect, hp_change})
+                .then(res => {this.setState({party: res.data})})
+        }
+        // Damage & Temp HP loss
+        if(e.target.name === 'damage') {
+            // if(temp_hp >= +hp_change){
+            //     let effect = 'temp_loss'
+            //     Axios.put('/api/character', {campaign, target, effect, hp_change})
+            //         .then(res => this.setState({party: res.data}))
+            // } else {
+                let effect = 'damage'
+                Axios.put('/api/character', {campaign, target, effect, hp_change})
+                    .then(res => this.setState({party: res.data}))
+            }
+        // }
+        // Temp HP gain
+        else if(e.target.name === 'temp') {
+            let effect = 'temp_gain'
+            Axios.put('/api/character', {campaign, target, effect, hp_change})
+                .then(res => this.setState({party: res.data}))
+        }
+        // Long Rest & Initiative
+        // for(let i=0; i < partyCopy.length; i++){
             // Long rest to restore current HP of party to max
-            else if (e.target.name === 'long_rest'){
-                partyCopy[i].current_hp = max_hp;
-                partyCopy[i].health = 'ok';
-            }
-            // HP manipulation
-            else {
-                if(name === target){
-                    let half = (max_hp / 2)
-                    // Healing
-                    if(e.target.name === 'heal'){
-                        let effect = 'heal'
-                        Axios.put('/api/character', {campaign, target, effect, hp_change})
-                            .then(res => {this.setState({party: res.data}); console.log(this.state.party)})
-                        // partyCopy[i].current_hp += +hp_change;
-                            // if(partyCopy[i].current_hp > max_hp){
-                            //     partyCopy[i].current_hp = max_hp
-                            // }
-                            if(partyCopy[i].current_hp <= hp_threshold){
-                                partyCopy[i].health = 'low';
-                            } else if(partyCopy[i].current_hp > half) {
-                                partyCopy[i].health = 'ok';
-                            } else {
-                                partyCopy[i].health = 'half';
-                            }
-                    }
-                    // Damage
-                    else if(e.target.name === 'damage') {
-                        if(temp_hp >= +hp_change){
-                            let effect = 'temp_loss'
-                            // partyCopy[i].temp_hp -= +hp_change;
-                            Axios.put('/api/character', {campaign, target, effect, hp_change})
-                                .then(res => this.setState({party: res.data}))
-                        } else {
-                            let effect = 'damage'
-                            let rollOver = +hp_change - temp_hp
-                            // partyCopy[i].temp_hp = 0;
-                            if(+rollOver > partyCopy[i].current_hp){
-                                // partyCopy[i].current_hp = 0;
-                                partyCopy[i].health = 'downed';
-                            } else {
-                                // partyCopy[i].current_hp -= rollOver;
-                                if(partyCopy[i].current_hp < 1){
-                                    partyCopy[i].health = 'downed';
-                                } else if(partyCopy[i].current_hp < hp_threshold){
-                                    partyCopy[i].health = 'low';
-                                } else if(partyCopy[i].current_hp <= half){
-                                    partyCopy[i].health = 'half';
-                                }
-                            }
-                            Axios.put('/api/character', {campaign, target, effect, hp_change})
-                                .then(res => this.setState({party: res.data}))
-                        }
-                    }
-                    // Temp HP
-                    else if(e.target.name === 'temp') {
-                        let effect = 'temp_gain'
-                        // partyCopy[i].temp_hp += +hp_change
-                        Axios.put('/api/character', {campaign, target, effect, hp_change})
-                            .then(res => this.setState({party: res.data}))
-                    }
-                }
-            }
-            this.setState({hp_change: 0})
-        }
-        // Initiative Tracker
-        if(e.target.name === 'init'){
-            init.push({name: target, initiative: +hp_change});
-            init.sort((a, b) => ( a.initiative > b.initiative) ? -1 : 1)
-            this.setState({...party, hp_change: 0, initiative: init})
-        }  else if(e.target.name === 'reset'){
-            this.setState({...party, hp_change: 0, initiative: []})
-        }
+            // if (e.target.name === 'long_rest'){
+            //     partyCopy[i].current_hp = max_hp;
+            //     partyCopy[i].health = 'ok';
+            // }
+            // Initiative Tracker
+        //     else if(e.target.name === 'init'){
+        //         init.push({name: target, initiative: +hp_change});
+        //         init.sort((a, b) => ( a.initiative > b.initiative) ? -1 : 1)
+        //         this.setState({...party, hp_change: 0, initiative: init})
+        //     }  else if(e.target.name === 'reset'){
+        //         this.setState({...party, hp_change: 0, initiative: []})
+        //     }
+        // }
+        this.setState({hp_change: 0})
     }
 
     render(){

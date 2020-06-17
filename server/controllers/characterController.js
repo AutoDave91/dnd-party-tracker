@@ -30,9 +30,13 @@ function editCharacter(req, res){
             adventurer.current_hp = adventurer.max_hp
         } else {adventurer.current_hp += +hp_change}
     } else if(effect === 'damage'){
-        let rollOver = +hp_change - adventurer.temp_hp
-        adventurer.current_hp -= +rollOver
-        adventurer.temp_hp = 0
+        if(adventurer.temp_hp >= +hp_change){
+            adventurer.temp_hp -= +hp_change
+        } else {
+            let rollOver = +hp_change - adventurer.temp_hp
+            adventurer.current_hp -= +rollOver
+            adventurer.temp_hp = 0
+        }
     } else if(effect === 'temp_gain'){
         adventurer.temp_hp += +hp_change
     } else if(effect === 'temp_loss'){
