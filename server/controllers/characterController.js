@@ -18,7 +18,8 @@ function getAll(req, res){
     res.json(characters)
 }
 function getParty(req, res){
-    let party = characters.filter(character => character.campaign === req.body.campaign)
+    // console.log(`CC21: ${req.query}`)
+    let party = characters.filter(character => character.campaign === req.query.campaign)
     res.json(party)
 }
 function editCharacter(req, res){
@@ -48,7 +49,17 @@ function editCharacter(req, res){
     // console.log(party)
     res.json(party)
 }
+function longRest(req, res){
+    let party = characters.filter(character => character.campaign === req.body.campaign)
+    party.forEach( character => {
+        character.current_hp = character.max_hp
+    })
+    res.json(party)
+}
 
 module.exports = {
-    getAll, getParty, editCharacter
+    getAll,
+    getParty,
+    editCharacter,
+    longRest
 }

@@ -5,7 +5,10 @@ const session = require('express-session');
 require('dotenv').config();
 
 // CONTROLLERS
+const ac = require('./controllers/authController')
 const cc = require('./controllers/characterController.js');
+const ic = require('./controllers/initController');
+const { rolledInit } = require('./controllers/initController');
 
 const {SERVER_PORT,
         // CONNECTION_STRING,
@@ -31,9 +34,16 @@ app.use(session({
 // .catch(()=>{console.log('Database connection failed...')})
 
 // ENDPOINTS
+// login
+
+// party fetch and character manipulation
 app.get('/api/characters', cc.getAll)
-app.post('/api/party', cc.getParty)
+app.get('/api/party', cc.getParty)
+app.put('/api/party', cc.longRest)
 app.put('/api/character', cc.editCharacter)
+// initiative tracker
+app.post('/api/initiative', ic.rolledInit)
+app.delete('/api/initiative', ic.resetInit)
 
 app.listen(SERVER_PORT, ()=> {
     console.log(`Listening on port ${SERVER_PORT}.`)

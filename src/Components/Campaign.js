@@ -25,8 +25,8 @@ class Campaign extends Component {
 
     componentDidMount(){
         let campaign = this.props.match.params.name;
-        console.log(this.state.party)
-        Axios.post('/api/party/', {campaign})
+        console.log(campaign)
+        Axios.get(`/api/party?campaign=${campaign}`)
             .then(res => {
                 // console.log(campaign)
                 this.setState({party: res.data, target: res.data[0].name, campaign: res.data[0].campaign})
@@ -40,22 +40,23 @@ class Campaign extends Component {
     handleClick(e){
         // console.log(this.state)
         let {campaign, party, hp_change, target, hp_threshold, initiative} = this.state;
-        let init = [...initiative]
+        let {name} = e.target;
+        let init = [...initiative];
         // --------Level manipulation-------
-        if(e.target.name === 'lvl_change'){
+        if(name === 'lvl_change'){
             let effect = 'level'
             Axios.put('/api/character', {campaign, target, effect})
                 .then(res => this.setState({party: res.data}))
         } 
         // ---------HP manipulation---------
         // Healing
-        if(e.target.name === 'heal'){
+        if(name === 'heal'){
             let effect = 'heal'
             Axios.put('/api/character', {campaign, target, effect, hp_change})
                 .then(res => {this.setState({party: res.data})})
         }
         // Damage & Temp HP loss
-        if(e.target.name === 'damage') {
+        if(name === 'damage') {
             // if(temp_hp >= +hp_change){
             //     let effect = 'temp_loss'
             //     Axios.put('/api/character', {campaign, target, effect, hp_change})
@@ -67,27 +68,28 @@ class Campaign extends Component {
             }
         // }
         // Temp HP gain
-        else if(e.target.name === 'temp') {
+        else if(name === 'temp') {
             let effect = 'temp_gain'
             Axios.put('/api/character', {campaign, target, effect, hp_change})
                 .then(res => this.setState({party: res.data}))
         }
-        // Long Rest & Initiative
-        // for(let i=0; i < partyCopy.length; i++){
-            // Long rest to restore current HP of party to max
-            // if (e.target.name === 'long_rest'){
-            //     partyCopy[i].current_hp = max_hp;
-            //     partyCopy[i].health = 'ok';
-            // }
-            // Initiative Tracker
-        //     else if(e.target.name === 'init'){
-        //         init.push({name: target, initiative: +hp_change});
-        //         init.sort((a, b) => ( a.initiative > b.initiative) ? -1 : 1)
-        //         this.setState({...party, hp_change: 0, initiative: init})
-        //     }  else if(e.target.name === 'reset'){
-        //         this.setState({...party, hp_change: 0, initiative: []})
-        //     }
-        // }
+        // Long Rest
+        else if(name === 'long_rest'){
+            Axios.put('/api/party', {campaign})
+                .then(res => this.setState({party: res.data}))
+        }
+        // Initiative
+        else if(name === 'init'){
+            // add check to see if character already has init
+                // if true: prompt if they want to replace the init
+                    // if yes: send command to replace the init
+                    // if no: close popup
+            Axios.post('/api/initiative', {target, hp_change})
+                .then(res => {this.setState({initiative: res.data}); console.log(this.state.initiative)})
+        } else if(name === 'reset'){
+            Axios.delete('/api/initiative')
+            this.setState({initiative: []})
+        }
         this.setState({hp_change: 0})
     }
 
@@ -125,19 +127,18 @@ class Campaign extends Component {
                         </section>
                     </section>
                     <section>
-                    {this.state.crit === true ? (
-                        this.state.initiative[0] ? (
+                    {this.state.initiative[0] ? (
                             <section className='initiative'>
                                 <h1>Initiative Tracker</h1>
                                 {this.state.initiative.map((member, i) =>
                                 (
-                                    <h1>{member.name}: {member.initiative}</h1>
+                                    <h1>{member.name}: {member.value}</h1>
                                 ))}
                             </section>
                         ) : (
                             <h1 className='roll-init'>Roll Initiative</h1>
                         )
-                    ) : <h1 className='roll-init'>Initiative Tracker</h1>}
+                    }
                     </section>
                 </div>
                 <section className='health'>
