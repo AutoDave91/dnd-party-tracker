@@ -1,27 +1,53 @@
 @media (max-width: 900px){
+    .health{
+        margin-top: 5%;
+    }
+    .low, .ok, .downed, .half {
+        width: 13%;
+    }
+    .party{
+        margin-top: 2%;
+    }
     .player, .ability-scores, .header-img{
         display: none;
-    }
-    .slant-bottom, .Header, button, .ac-title, .max, .temp, .current {
-    font-size: 2vw;
     }
     .member {
         flex-flow: column;
         align-items: center;
         width: 25vw;
+        height: 55vw;
+        padding-top: 10%;
     }
-    .ac-hp-1, .ac-hp-2 {
-        margin: 0%;
-        padding: 0%;
+    .initiative, .roll-init{
+        font-size: 80%;
     }
-    .party-pics {
-        height: 20%;
+    .party-pics{
+        margin: 5%;
+        width: 100%;
+        height: 150%;
+    }
+    .temp-hp, .current-hp, .ac-group, .max-hp, .hp, .ac {
+        font-size: 65%;
+    }
+    .ac-hp-1{
+        margin-top: 35%;
+    }
+    .ac-hp-2 {
+        margin-top: 10%;
     }
     .Header {
-        height: 7vw;
+        height: 20vw;
     }
-    .name-class-player {
-        margin-bottom: 2vh;
+    /* .name-class-player {
+        margin-bottom: 5vh;
+    } */
+    .slant-top{
+        font-size: 80%;
+        width: 120%;
+    }
+    .slant-bottom{
+        font-size: 60%;
+        width: 120%;
     }
     .ac, .hp {
         height: 10vw;

@@ -130,13 +130,14 @@
 }
 .low, .ok, .downed, .half{
     width: 10%;
-    height: 2vw;
+    /* height: 2vw; */
     font-size: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(253, 204, 143);
 }
-.half{
+/* .half{
     background-color: yellow;
 }
 .low{
@@ -148,7 +149,7 @@
 .downed{
     background-color: black;
     color: wheat;
-}
+} */
 /* #Healer{
     background-color: gold;
 }

@@ -1,5 +1,8 @@
 let initiative = []
 
+function getInit(req, res){
+    res.json(initiative)
+}
 function rolledInit(req, res){
     let {target, hp_change} = req.body
     let name = target
@@ -16,7 +19,8 @@ function resetInit(){
 }
 
 module.exports = {
-rolledInit,
-newInit,
-resetInit
+    getInit,
+    rolledInit,
+    newInit,
+    resetInit
 }

@@ -16,7 +16,7 @@ class Campaign extends Component {
             hp_threshold: 5,
             hp_change: 0,
             target: '',
-            crit: false
+            crit: true
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
@@ -32,6 +32,8 @@ class Campaign extends Component {
                 this.setState({party: res.data, target: res.data[0].name, campaign: res.data[0].campaign})
             })
             .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
+        Axios.get('/api/initiative')
+            .then(res => this.setState({initiative: res.data}))
     }
     handleChange(e){
         this.setState({[e.target.name]: e.target.value})
@@ -41,7 +43,7 @@ class Campaign extends Component {
         // console.log(this.state)
         let {campaign, party, hp_change, target, hp_threshold, initiative} = this.state;
         let {name} = e.target;
-        let init = [...initiative];
+        
         // --------Level manipulation-------
         if(name === 'lvl_change'){
             let effect = 'level'
@@ -57,16 +59,10 @@ class Campaign extends Component {
         }
         // Damage & Temp HP loss
         if(name === 'damage') {
-            // if(temp_hp >= +hp_change){
-            //     let effect = 'temp_loss'
-            //     Axios.put('/api/character', {campaign, target, effect, hp_change})
-            //         .then(res => this.setState({party: res.data}))
-            // } else {
-                let effect = 'damage'
-                Axios.put('/api/character', {campaign, target, effect, hp_change})
-                    .then(res => this.setState({party: res.data}))
-            }
-        // }
+            let effect = 'damage'
+            Axios.put('/api/character', {campaign, target, effect, hp_change})
+                .then(res => this.setState({party: res.data}))
+        }
         // Temp HP gain
         else if(name === 'temp') {
             let effect = 'temp_gain'
@@ -85,7 +81,7 @@ class Campaign extends Component {
                     // if yes: send command to replace the init
                     // if no: close popup
             Axios.post('/api/initiative', {target, hp_change})
-                .then(res => {this.setState({initiative: res.data}); console.log(this.state.initiative)})
+            .then(res => {this.setState({initiative: res.data}); console.log(this.state.initiative)})
         } else if(name === 'reset'){
             Axios.delete('/api/initiative')
             this.setState({initiative: []})
@@ -144,7 +140,7 @@ class Campaign extends Component {
                 <section className='health'>
                     {this.state.crit === true ? (
                         this.state.party.map((member, i) => (
-                                <h3 className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}`}</h3>
+                                <h3 className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}/${member.max_hp}`}</h3>
                         ))
                     ) : null }
                 </section>
