@@ -44,7 +44,7 @@ class Header extends Component {
                     </section>
                 ) : (
                     <section className='header-side'>
-                        <button onClick={()=> console.log('User?')}>User?</button>
+                        <Link to='/login'><button>User?</button></Link>
                     </section>
                 )}
             </main>
