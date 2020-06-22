@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 const initialState ={
-    user: {username: 'AutoDave'},
+    user: {username: 'AutoDave', password: 123},
     // user: {},
     username: '',
     password: '',

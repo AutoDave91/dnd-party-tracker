@@ -7,7 +7,11 @@ function Full_View(props){
     return(
         <main className='member' id={props.member.role}>
             <section className='pic-name'>
-                <img className='party-pics' src={require('../assets/' + props.member.name + '.JPG')} alt={props.member.name} />
+                {`../assets/${props.member.name}.JPG` ?
+                    <img className='party-pics' src={require('../assets/' + props.member.name + '.JPG')} alt={props.member.name} />
+                    :
+                    <image className='party-pics' src={require('../assets/Pending.JPG')} alt={props.member.name} />
+                }
                     <div className='name-class-player'>
                         <div className='slant-top'>
                             <h1 className='name'>{props.member.name}</h1>

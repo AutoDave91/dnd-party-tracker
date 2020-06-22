@@ -20,6 +20,10 @@
     }
     .initiative, .roll-init{
         font-size: 80%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .name{
+        font-family: Arial, Helvetica, sans-serif;
     }
     .party-pics{
         margin: 5%;
