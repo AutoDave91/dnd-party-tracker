@@ -38,11 +38,11 @@ async function login(req, res){
     }
     // console.log(user)
     req.session.user = {
-        id: user.customer_id,
+        id: user.users_id,
         username: user.username,
         admin: user.admin
     }
-    return res.send(req.session.customer)
+    return res.send(req.session.user)
 }
 async function logout(req, res){
     req.session.destroy();

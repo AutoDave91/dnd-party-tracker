@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Axios from 'axios';
 
@@ -40,7 +40,7 @@ class Login extends Component {
                 // console.log(user.data.admin)
                 // console.log(user)
                 // console.log(username, password)
-                this.setState({user: user.value.data, redirect: true});
+                this.setState({user: user.value.data, redirect: true, username: '', password: ''});
                 // console.log(user.data)
                 // console.log('Logged in');
             })
@@ -72,7 +72,10 @@ class Login extends Component {
     }
 
     render(){
-        let {username, password, newUsername, newPassword} = this.state;
+        let {redirect, username, password, newUsername, newPassword} = this.state;
+        if(redirect === true){
+            return <Redirect to='/' />
+        }
 
         return(
             <main className='login_register'>

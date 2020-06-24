@@ -47,17 +47,20 @@ export const logout = () => {
 }
 
 function reducer(state = initialState, action){
+    // console.log(action.payload)
     switch(action.type){
         case `${GET_USER}_PENDING`:
+            return {...state, loading: true};
         case `${GET_USER}_FULFILLED`:
-            return {...state, user: action.payload}
+            return {...state, user: action.payload.data, loading: false}
         case `${SET_USERNAME}_FULFILLED`:
                 return {...state, username: action.payload};
         case `${SET_ADMIN}_FULFILLED`:
             return {...state, admin: action.payload};
         case `${LOGIN}_PENDING`:
+            return {...state, loading: true};
         case `${LOGIN}_FULFILLED`:
-            return {...state, user: action.payload};
+            return {...state, user: action.payload.data, loading: false};
         case `${LOGOUT}_FULFILLED`:
             return {
                 user: {},

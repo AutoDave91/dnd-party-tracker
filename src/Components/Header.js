@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 import '../style/header.css';
 
-// import {getUser, logout} from '../reducks/reducer';
+import {getUser, logout} from '../reducks/reducer';
 
 class Header extends Component {
     constructor(){
@@ -16,11 +16,11 @@ class Header extends Component {
     }
 
     componentDidMount(){
-        // this.props.getUser()
+        this.props.getUser()
     }
 
     render(){
-        // console.log(this.props.reducer)
+        console.log(this.props.reducer)
         return(
             <main className='Header'>
                 {this.props.reducer.user.username ? (
@@ -57,5 +57,5 @@ const mapStateToProps = state => {
     }
 }
 export default connect(mapStateToProps
-    // , {getUser, logout}
+    , {getUser, logout}
     )(Header)
