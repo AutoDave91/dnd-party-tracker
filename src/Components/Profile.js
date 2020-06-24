@@ -11,35 +11,38 @@ class Profile extends Component {
         this.state = {
             characters: []
         }
-        this.characters = this.characters.bind(this);
+        // this.characters = this.characters.bind(this);
     }
 
     componentDidMount(){
         // Axios request to pull characters in this.props.match.params.name, then setState party to the results
-        this.characters()
+        // this.characters()
     }
-    // Axios request to send HP change to db
-        characters(){
-            let characters = []
-            for(let i=0; i < this.props.reducer.data.length; i++){
-                if(this.props.reducer.data[i].player === this.props.reducer.user.username){
-                    characters.push(this.props.reducer.data[i])
-                }
-            }
-            this.setState({characters: characters})
-        }
+    
+    // Axios request to send character changes to db
+    // Axios request to add new character for campaign
+
+        // characters(){
+        //     let characters = []
+        //     for(let i=0; i < this.props.reducer.data.length; i++){
+        //         if(this.props.reducer.data[i].player === this.props.reducer.user.username){
+        //             characters.push(this.props.reducer.data[i])
+        //         }
+        //     }
+        //     this.setState({characters: characters})
+        // }
 
     render(){
         return(
             <main className='Profile'>
                 <h1>{this.props.reducer.user.username}</h1>
-                {this.state.characters[0] ? (
+                {/* {this.state.characters[0] ? (
                     this.state.characters.map((member, i) =>(
                         <FullView member={member} i={i} component={'Profile'}/>
                     ))
-                ) : (
+                ) : ( */}
                     <h1>Contact AutoDave to add your character</h1>
-                )}
+                {/* )} */}
             </main>
         )
     }

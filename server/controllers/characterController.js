@@ -1,6 +1,6 @@
 // include temp data storage
 const characters = [
-{campaign: 'TOA', player: 'AutoDave', name: 'Nortle', class: 'Druid', role: 'Healer', lvl: 1, max_hp: 10, ac: 19, current_hp: 10, temp_hp: 0, str: 12, dex: 12, con: 14, int: 13, wis: 16, cha: 8, health: 'ok'},
+{campaign: 'TOA', player: 'AutoDave', name: 'Nortle', class: 'Druid', role: 'Support', lvl: 1, max_hp: 10, ac: 19, current_hp: 10, temp_hp: 0, str: 12, dex: 12, con: 14, int: 13, wis: 16, cha: 8, health: 'ok'},
 {campaign: 'TOA', player: 'CodyNo', name: 'Jasdof', class: 'Barbarian', role: 'Tank', lvl: 2, max_hp: 14, ac: 15, current_hp: 14, temp_hp: 0, str: 15, dex: 14, con: 15, int: 8, wis: 11, cha: 12, health: 'ok'},
 {campaign: 'TOA', player: 'SwordsaintIIV', name: 'Lou', class: 'Fighter', role: 'Tank', lvl: 1, max_hp: 11, ac: 19, current_hp: 11, temp_hp: 0, str: 16, dex: 15, con: 12, int: 8, wis: 12, cha: 14, health: 'ok'},
 {campaign: 'TOA', player: 'Wonsnot', name: 'Shroom', class: 'Wild Magic Sorcerer', role: 'Damage', lvl: 2, max_hp: 14, ac: 11, current_hp: 14, temp_hp: 0, str: 10, dex: 13, con: 15, int: 8, wis: 12, cha: 17, health: 'ok'},
@@ -11,16 +11,24 @@ const characters = [
 {campaign: 'Winds of Change', player: 'Wonsnot', name: 'Thorren', class: 'Wizard', role: 'Damage', lvl: 3, max_hp: 14, ac: 12, current_hp: 14, temp_hp: 0, str: 8, dex: 14, con: 12, int: 16, wis: 12, cha: 14, health: 'ok'},
 {campaign: 'Winds of Change', player: 'Baum', name: 'Mia', class: 'Fighter', role: 'Damage', lvl: 3, max_hp: 23, ac: 16, current_hp: 23, temp_hp: 0, str: 16, dex: 10, con: 14, int: 10, wis: 8, cha: 15, health: 'ok'}, 
 {campaign: 'Winds of Change', player: 'ItsVlad', name: 'Crane', class: 'Bard', role: 'Damage', lvl: 3, max_hp: 18, ac: 14, current_hp: 18, temp_hp: 0, str: 8, dex: 14, con: 10, int: 12, wis: 14, cha: 17, health: 'ok'},
-{campaign: 'Winds of Change', player: 'ml1201', name: 'Zealvari', class: 'Cleric', role: 'Healer', lvl: 2, max_hp: 18, ac: 18, current_hp: 10, temp_hp: 0, str: 14, dex: 8, con: 14, int: 13, wis: 17, cha: 17, health: 'ok'}
+{campaign: 'Winds of Change', player: 'ml1201', name: 'Zealvari', class: 'Cleric', role: 'Support', lvl: 2, max_hp: 18, ac: 18, current_hp: 10, temp_hp: 0, str: 14, dex: 8, con: 14, int: 13, wis: 17, cha: 17, health: 'ok'}
 ]
 
 function getAll(req, res){
     res.json(characters)
 }
-function getParty(req, res){
+async function getParty(req, res){
     // console.log(`CC21: ${req.query}`)
-    let party = characters.filter(character => character.campaign === req.query.campaign)
-    res.json(party)
+    const db = req.app.get('db');
+    let campaignID = await db.get_campaign([req.query.campaign])
+    let campaign = campaignID[0].campaign_id
+    console.log(campaign)
+    db.get_party(campaign)
+        .then(response => {res.status(200).json(response); console.log(response)})
+        .catch(()=>{res.sendStatus(500)})
+
+    // let party = characters.filter(character => character.campaign === req.query.campaign)
+    // res.json(party)
 }
 function editCharacter(req, res){
     let {campaign, target, effect, hp_change} = req.body

@@ -25,11 +25,11 @@ class Campaign extends Component {
 
     componentDidMount(){
         let campaign = this.props.match.params.name;
-        console.log(campaign)
+        // console.log(campaign)
         Axios.get(`/api/party?campaign=${campaign}`)
             .then(res => {
-                // console.log(campaign)
-                this.setState({party: res.data, target: res.data[0].name, campaign: res.data[0].campaign})
+                // console.log(res.data)
+                this.setState({party: res.data, target: res.data[0].character_name, campaign: res.data[0].campaign})
             })
             .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
         Axios.get('/api/initiative')
@@ -110,7 +110,7 @@ class Campaign extends Component {
                             <input name='hp_change' type='number' value={this.state.hp_change} onChange={this.handleChange}/>
                             <select name='target' onChange={this.handleChange}>
                                 {this.state.party.map((member, i) => (
-                                    <option value={member.name}>{member.name}</option>
+                                    <option value={member.character_name}>{member.character_name}</option>
                                     ))}
                             </select>
                             <div>
