@@ -8,9 +8,11 @@ async function getParty(req, res){
     const db = req.app.get('db');
     let campaignID = await db.get_campaign([req.query.campaign])
     let campaign = campaignID[0].campaign_id
-    console.log(campaign)
+    // console.log(campaign)
     db.get_party(campaign)
-        .then(response => {res.status(200).json(response); console.log(response)})
+        .then(response => {res.status(200).json(response);
+            // console.log(response)
+        })
         .catch(()=>{res.sendStatus(500)})
 }
 function editCharacter(req, res){

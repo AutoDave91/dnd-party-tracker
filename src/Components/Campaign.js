@@ -140,7 +140,7 @@ class Campaign extends Component {
                 <section className='health'>
                     {this.state.crit === true ? (
                         this.state.party.map((member, i) => (
-                                <h3 className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}/${member.max_hp}`}</h3>
+                                <h3 className={`${member.health}`}>{`${member.character_name}'s current hp: ${member.current_hp}/${member.max_hp}`}</h3>
                         ))
                     ) : null }
                 </section>
