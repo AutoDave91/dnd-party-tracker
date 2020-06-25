@@ -29,7 +29,8 @@ class Campaign extends Component {
         Axios.get(`/api/party?campaign=${campaign}`)
             .then(res => {
                 // console.log(res.data)
-                this.setState({party: res.data, target: res.data[0].character_name, campaign: res.data[0].campaign})
+                this.setState({party: res.data, target: res.data[0].name, campaign: res.data[0].campaign})
+                // this.setState({party: res.data, target: res.data[0].character_name, campaign: res.data[0].campaign})
             })
             .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
         Axios.get('/api/initiative')

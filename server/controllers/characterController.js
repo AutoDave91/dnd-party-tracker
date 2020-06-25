@@ -19,16 +19,17 @@ function getAll(req, res){
 }
 async function getParty(req, res){
     // console.log(`CC21: ${req.query}`)
-    const db = req.app.get('db');
-    let campaignID = await db.get_campaign([req.query.campaign])
-    let campaign = campaignID[0].campaign_id
-    console.log(campaign)
-    db.get_party(campaign)
-        .then(response => {res.status(200).json(response); console.log(response)})
-        .catch(()=>{res.sendStatus(500)})
 
-    // let party = characters.filter(character => character.campaign === req.query.campaign)
-    // res.json(party)
+    // const db = req.app.get('db');
+    // let campaignID = await db.get_campaign([req.query.campaign])
+    // let campaign = campaignID[0].campaign_id
+    // console.log(campaign)
+    // db.get_party(campaign)
+    //     .then(response => {res.status(200).json(response); console.log(response)})
+    //     .catch(()=>{res.sendStatus(500)})
+
+    let party = characters.filter(character => character.campaign === req.query.campaign)
+    res.json(party)
 }
 function editCharacter(req, res){
     let {campaign, target, effect, hp_change} = req.body
