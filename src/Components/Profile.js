@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 // import Axios from 'axios';
 
-import FullView from './FullView';
+// import FullView from './FullView';
 
 class Profile extends Component {
     constructor(){

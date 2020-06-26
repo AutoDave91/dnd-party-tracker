@@ -42,7 +42,7 @@ class Campaign extends Component {
     }
     handleClick(e){
         // console.log(this.state)
-        let {campaign, party, hp_change, target, hp_threshold, initiative} = this.state;
+        let {campaign, hp_change, target} = this.state;
         let {name} = e.target;
         
         // --------Level manipulation-------

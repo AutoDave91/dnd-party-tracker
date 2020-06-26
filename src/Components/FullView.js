@@ -19,7 +19,7 @@ function Full_View(props){
                         <div className='slant-bottom'>
                             <h2 className='class'>{props.member.class} ({props.member.lvl})</h2>
                             {props.component === 'Campaign' ? (
-                            <h2 className='player'>Party: {props.member.role}</h2>
+                            <h2 className='player'>Role: {props.member.role}</h2>
                             ) : (
                                 <h2 className='player'>{props.member.campaign}</h2>
                             )}
