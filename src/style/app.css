@@ -1,7 +1,8 @@
 .App{
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    background-image: url('../assets/trackerBackground.jpg');
     min-height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
     display: flex;
     flex-direction: column;
     align-items: center;

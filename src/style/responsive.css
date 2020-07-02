@@ -14,9 +14,9 @@
     .member {
         flex-flow: column;
         align-items: center;
-        width: 25vw;
+        width: 30vw;
         height: 55vw;
-        padding-top: 10%;
+        padding-top: 15%;
     }
     .initiative, .roll-init{
         font-size: 80%;

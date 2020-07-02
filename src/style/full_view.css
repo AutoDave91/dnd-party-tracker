@@ -2,12 +2,16 @@
     margin-top: 1.5vh;
     padding-top: 1.5vw;
     padding-bottom: 1.5vw;
+    margin-bottom: 1vh;
     border-radius: 3vw;
-    width: 30vw;
+    /* width: 30vw; */
+    width: 45vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(253, 204, 143);
+    /* background-color: rgb(253, 204, 143); */
+    /* border: 1px black solid; */
+    background-color: rgba(245, 245, 245, 0.527);
 }
 .initiative, .roll-init{
     border: solid 1px;
@@ -20,6 +24,8 @@
     font-size: 100%;
     font-family: 'Fredericka the Great', cursive;
     color: rgb(75, 75, 75);
+    /* font-weight: bold; */
+    text-shadow: 0 0 1px black;
 }
 .roll-init {
     display: flex;
@@ -48,11 +54,13 @@
     background-image: linear-gradient(white, silver);
     font-size: 150%;
     width: 11vw;
+    text-shadow: 0 0 1px black;
 }
 .slant-bottom {
     margin-left: -0.2vw;
     transform: skewX(30deg);
-    font-size: 80%;
+    /* font-size: 80%; */
+    font-size: 70%;
     width: 11vw;
 }
 .name {
@@ -97,7 +105,7 @@
     width: 70%;
     height: 85%;
     border-radius: 50%;
-    border: 1px black solid;
+    /* border: 1px black solid; */
 }
 .ac {
     background-image: url('https://www.netclipart.com/pp/m/10-105367_download-shield-outline-clip-art-png-shield-transparent.png');
@@ -122,11 +130,18 @@
 .ac-hp-1, .ac-hp-2 {
     display: flex;
     justify-content: space-between;
+    /* font-weight: bold; */
+    text-shadow: 0 0 1px black;
 }
 .health{
     display: flex;
     justify-content: space-evenly;
     margin-top: .25vw;
+}
+#charHealth{
+    background-color: rgba(245, 245, 245, 0.76);
+    /* font-weight: bold; */
+    text-shadow: 0 0 .5px black;
 }
 .low, .ok, .downed, .half{
     width: 10%;

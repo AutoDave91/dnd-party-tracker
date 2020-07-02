@@ -111,7 +111,7 @@ class Campaign extends Component {
                             <input name='hp_change' type='number' value={this.state.hp_change} onChange={this.handleChange}/>
                             <select name='target' onChange={this.handleChange}>
                                 {this.state.party.map((member, i) => (
-                                    <option value={member.character_name}>{member.character_name}</option>
+                                    <option value={member.character_name}>{member.name}</option>
                                     ))}
                             </select>
                             <div>
@@ -141,7 +141,7 @@ class Campaign extends Component {
                 <section className='health'>
                     {this.state.crit === true ? (
                         this.state.party.map((member, i) => (
-                                <h3 className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}/${member.max_hp}`}</h3>
+                                <h3 id='charHealth' className={`${member.health}`}>{`${member.name}'s current hp: ${member.current_hp}/${member.max_hp}`}</h3>
                         ))
                     ) : null }
                 </section>
