@@ -34,7 +34,7 @@ class Header extends Component {
                     </section>
                 )}
                 <section className='header-center'>
-                    <Link to='/'><img className='header-img' src='https://avatars1.githubusercontent.com/u/44700233?s=460&v=4' alt='logo'/></Link>
+                    <Link to='/'><img className='header-img' src={require('../assets/Pending.JPG')} alt='logo'/></Link>
                     <h1 className='title'>AutoDave's D&D Aid</h1>
                     <Link to='/'><button className='home'>home</button></Link>
                 </section>

@@ -50,6 +50,7 @@ class Campaign extends Component {
             let effect = 'level'
             Axios.put('/api/character', {campaign, target, effect})
                 .then(res => this.setState({party: res.data}))
+            alert(`Congrats ${target} on leveling up!`)
         } 
         // ---------HP manipulation---------
         // Healing
@@ -74,6 +75,7 @@ class Campaign extends Component {
         else if(name === 'long_rest'){
             Axios.put('/api/party', {campaign})
                 .then(res => this.setState({party: res.data}))
+            alert(`Glad y'all got a long rest in!`)
         }
         // Initiative
         else if(name === 'init'){
@@ -93,7 +95,7 @@ class Campaign extends Component {
     render(){
         return(
             <main className='Campaign'>
-                <h1 className='title'>{this.props.match.params.name} Adventuring Party</h1>
+                <h1 className='title' id='campaign-title'>{this.props.match.params.name} Adventuring Party</h1>
                 {/* hide buttons, input, and selection if user isn't a healer */}
                 <div className='top'>
                     <section>

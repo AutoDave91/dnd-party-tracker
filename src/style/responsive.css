@@ -14,9 +14,11 @@
     .member {
         flex-flow: column;
         align-items: center;
-        width: 30vw;
+        width: 33vw;
         height: 55vw;
         padding-top: 15%;
+        margin-left: 0;
+        margin-right: 0;
     }
     .initiative, .roll-init{
         font-size: 80%;
@@ -48,10 +50,12 @@
     .slant-top{
         font-size: 80%;
         width: 120%;
+        margin-left: -1vw;
     }
     .slant-bottom{
-        font-size: 60%;
+        font-size: 53%;
         width: 120%;
+        margin-bottom: 2vh;
     }
     .ac, .hp {
         height: 10vw;

@@ -1,6 +1,15 @@
 .Campaign {
     text-align: center;
 }
+#campaign-title{
+    margin-left: 35%;
+    font-size: 2vw;
+    width: 30%;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    font-weight: bold;
+    background-color: rgba(245, 245, 245, 0.678);
+}
 .party {
     display: flex;
     flex-wrap: wrap;

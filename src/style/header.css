@@ -6,7 +6,7 @@
     height: 11vh;
     justify-content: space-between;
     align-items: center;
-    /* background-color: antiquewhite; */
+    background-color: rgba(245, 245, 245, 0.527);
 }
 .header-center {
     display: flex;
