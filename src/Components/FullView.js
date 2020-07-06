@@ -22,7 +22,7 @@ function Full_View(props){
                                 // <h2 className='player'>controlled by: {props.member.player}</h2>
                             <h2 className='player'>Party: {props.member.party_role}</h2>
                             ) : (
-                                <h2 className='player'>{props.member.campaign}</h2>
+                                <button className='player'>Edit</button>
                             )}
                         </div>
                     </div>

@@ -43,13 +43,21 @@ async function getParty(req, res){
         })
         .catch(()=>{res.sendStatus(500)})
 }
-function longRest(req, res){
-    // use long_rest.sql
-    let party = characters.filter(character => character.campaign === req.body.campaign)
-    party.forEach( character => {
-        character.current_hp = character.max_hp
-    })
-    res.json(party)
+async function longRest(req, res){
+    const db = req.app.get('db');
+    let {campaign_id} = req.body
+    db.long_rest(campaign_id)
+        .then(db.get_party(campaign_id)
+            .then(response => res.status(200).json(response))
+            .catch(()=>{res.sendStatus(500)}))
+        .catch(()=> res.sendStatus(500))
+}
+async function userCharacters(req, res){
+    const db = req.app.get('db');
+    let {user} = req.query;
+    db.get_characters(user)
+        .then(response => res.status(200).json(response))
+        .catch(()=> res.sendStatus(500))
 }
 
 module.exports = {
@@ -57,5 +65,6 @@ module.exports = {
     addCharacter,
     getParty,
     editCharacter,
-    longRest
+    longRest,
+    userCharacters
 }

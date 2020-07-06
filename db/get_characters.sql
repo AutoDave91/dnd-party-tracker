@@ -1,2 +1,2 @@
 SELECT * FROM character
-WHERE users_id = $1
+WHERE player_id = $1

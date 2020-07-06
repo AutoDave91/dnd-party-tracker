@@ -10,7 +10,7 @@ class Campaign extends Component {
     constructor(){
         super()
         this.state = {
-            campaign: '',
+            campaign_id: 0,
             party: [],
             initiative: [],
             hp_threshold: 5,
@@ -25,11 +25,12 @@ class Campaign extends Component {
 
     componentDidMount(){
         let campaign = this.props.match.params.name;
-        // console.log(campaign)
+        console.log(campaign)
         Axios.get(`/api/party?campaign=${campaign}`)
             .then(res => {
-                // console.log(res.data)
-                this.setState({party: res.data, target: res.data[0].character_name, campaign: res.data[0].campaign})
+                console.log(res.data)
+                this.setState({party: res.data, target: res.data[0].character_name, campaign_id: res.data[0].campaign_id})
+                console.log(this.state.party)
             })
             .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
         Axios.get('/api/initiative')
@@ -41,37 +42,37 @@ class Campaign extends Component {
     }
     handleClick(e){
         // console.log(this.state)
-        let {campaign, party, hp_change, target, hp_threshold, initiative} = this.state;
+        let {campaign_id, party, hp_change, target, hp_threshold, initiative} = this.state;
         let {name} = e.target;
         
         // --------Level manipulation-------
         if(name === 'lvl_change'){
             let effect = 'level'
-            Axios.put('/api/character', {campaign, target, effect})
+            Axios.put('/api/character', {campaign_id, target, effect})
                 .then(res => this.setState({party: res.data}))
         } 
         // ---------HP manipulation---------
         // Healing
         if(name === 'heal'){
             let effect = 'heal'
-            Axios.put('/api/character', {campaign, target, effect, hp_change})
+            Axios.put('/api/character', {campaign_id, target, effect, hp_change})
                 .then(res => {this.setState({party: res.data})})
         }
         // Damage & Temp HP loss
         if(name === 'damage') {
             let effect = 'damage'
-            Axios.put('/api/character', {campaign, target, effect, hp_change})
+            Axios.put('/api/character', {campaign_id, target, effect, hp_change})
                 .then(res => this.setState({party: res.data}))
         }
         // Temp HP gain
         else if(name === 'temp') {
             let effect = 'temp_gain'
-            Axios.put('/api/character', {campaign, target, effect, hp_change})
+            Axios.put('/api/character', {campaign_id, target, effect, hp_change})
                 .then(res => this.setState({party: res.data}))
         }
         // Long Rest
         else if(name === 'long_rest'){
-            Axios.put('/api/party', {campaign})
+            Axios.put('/api/party', {campaign_id})
                 .then(res => this.setState({party: res.data}))
         }
         // Initiative

@@ -42,6 +42,7 @@ app.get('/auth/logout', ac.logout)
 app.get('/api/party', cc.getParty)
 app.put('/api/party', cc.longRest)
 app.put('/api/character', cc.editCharacter)
+app.get('/api/characters', cc.userCharacters)
 // initiative tracker
 app.get('/api/initiative', ic.getInit)
 app.post('/api/initiative', ic.rolledInit)

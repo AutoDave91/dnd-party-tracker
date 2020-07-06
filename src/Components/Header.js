@@ -40,7 +40,7 @@ class Header extends Component {
                 </section>
                 {this.props.reducer.user.username ? (
                     <section className='header-side'>
-                        <button onClick={this.props.logout}>Logout</button>
+                        <button onClick={this.props.logout}><Link to='/'>Logout</Link></button>
                     </section>
                 ) : (
                     <section className='header-side'>

@@ -1,0 +1,11 @@
+.userCharacters{
+    display: flex;
+    flex-wrap: wrap;
+}
+.editButton{
+    width: 10vw;
+}
+.editCharacter{
+    display: flex;
+    flex-direction: column;
+}
