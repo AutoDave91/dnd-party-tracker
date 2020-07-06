@@ -92,7 +92,7 @@ class Campaign extends Component {
     render(){
         return(
             <main className='Campaign'>
-                <h1 className='title'>{this.props.match.params.name} Adventuring Party</h1>
+                <h1 className='title' id='campaign-title'>{this.props.match.params.name} Adventuring Party</h1>
                 {/* hide buttons, input, and selection if user isn't a healer */}
                 <div className='top'>
                     <section>
