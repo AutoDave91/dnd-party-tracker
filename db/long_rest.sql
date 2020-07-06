@@ -1,0 +1,1 @@
+-- receives campaign id, sets each current HP to max

@@ -32,6 +32,7 @@ CREATE TABLE character (
     wis INT,
     cha INT,
     health VARCHAR(10),
+    active BOOLEAN,
     FOREIGN KEY (campaign_id) REFERENCES campaign(campaign_id),
     FOREIGN KEY (player_id) REFERENCES users(users_id)
 )

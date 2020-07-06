@@ -39,7 +39,6 @@ app.post('/auth/register', ac.register)
 app.post('/auth/login', ac.login)
 app.get('/auth/logout', ac.logout)
 // party fetch and character manipulation
-app.get('/api/characters', cc.getAll)
 app.get('/api/party', cc.getParty)
 app.put('/api/party', cc.longRest)
 app.put('/api/character', cc.editCharacter)

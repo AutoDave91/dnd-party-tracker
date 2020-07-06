@@ -1,0 +1,1 @@
+-- toggle character's "active" boolean value
