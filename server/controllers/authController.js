@@ -46,16 +46,15 @@ async function login(req, res){
 }
 async function logout(req, res){
     req.session.destroy();
-    // console.log('logged out')
+    console.log('logged out')
     return res.status(200).send(req.session);
 }
 async function getUser(req, res){
-    // console.log('AC:53 ->', req.session)
-    // console.log('AC55: ', req.session.customer)
-    if(req.session.customer){
-        res.json(req.session.customer)
+    console.log('AC53: ', req.session.user)
+    if(req.session.user){
+        res.json(req.session.user)
     } else {
-        res.status(401).json(console.log('no user found'))
+        res.sendStatus(401)
     }
 }
 
