@@ -15,7 +15,7 @@ class Campaign extends Component {
             initiative: [],
             hp_threshold: 5,
             hp_change: 0,
-            target: '',
+            target: 'Choose Character',
             crit: true
         }
         this.handleChange = this.handleChange.bind(this)
@@ -25,49 +25,59 @@ class Campaign extends Component {
 
     componentDidMount(){
         let campaign = this.props.match.params.name;
-        console.log(campaign)
         Axios.get(`/api/party?campaign=${campaign}`)
             .then(res => {
                 console.log(res.data)
-                this.setState({party: res.data, target: res.data[0].character_name, campaign_id: res.data[0].campaign_id})
+                this.setState({party: res.data, target: 'Choose Character', campaign_id: res.data[0].campaign_id})
                 console.log(this.state.party)
             })
             .catch(()=> alert('Party failed to populate, please contact AutoDave if problem continues.'))
         Axios.get('/api/initiative')
             .then(res => this.setState({initiative: res.data}))
+        console.log(this.state.target)
     }
     handleChange(e){
         this.setState({[e.target.name]: e.target.value})
         // console.log(e.target.name, e.target.value)
     }
     handleClick(e){
-        // console.log(this.state)
+        // console.log(this.state.party)
         let {campaign_id, party, hp_change, target, hp_threshold, initiative} = this.state;
         let {name} = e.target;
+        console.log(target, party)
+        let adventurerMatch = []
+        for(let i = 0; i < party.length; i++){
+            console.log(party[i].character_name)
+            if(party[i].character_name === target){
+                adventurerMatch.push(party[i])
+            }
+        }
+        let adventurer = adventurerMatch[0]
+        console.log(adventurerMatch, adventurer)
         
         // --------Level manipulation-------
         if(name === 'lvl_change'){
             let effect = 'level'
-            Axios.put('/api/character', {campaign_id, target, effect})
+            Axios.put('/api/character', {campaign_id, target, effect, adventurer})
                 .then(res => this.setState({party: res.data}))
         } 
         // ---------HP manipulation---------
         // Healing
         if(name === 'heal'){
             let effect = 'heal'
-            Axios.put('/api/character', {campaign_id, target, effect, hp_change})
+            Axios.put('/api/character', {campaign_id, target, effect, hp_change, adventurer})
                 .then(res => {this.setState({party: res.data})})
         }
         // Damage & Temp HP loss
         if(name === 'damage') {
             let effect = 'damage'
-            Axios.put('/api/character', {campaign_id, target, effect, hp_change})
-                .then(res => this.setState({party: res.data}))
+            Axios.put('/api/character', {campaign_id, target, effect, hp_change, adventurer})
+                .then(res => {console.log(res.data); this.setState({party: res.data})})
         }
         // Temp HP gain
         else if(name === 'temp') {
             let effect = 'temp_gain'
-            Axios.put('/api/character', {campaign_id, target, effect, hp_change})
+            Axios.put('/api/character', {campaign_id, target, effect, hp_change, adventurer})
                 .then(res => this.setState({party: res.data}))
         }
         // Long Rest
@@ -110,6 +120,7 @@ class Campaign extends Component {
                         <section className='inputs'>
                             <input name='hp_change' type='number' value={this.state.hp_change} onChange={this.handleChange}/>
                             <select name='target' onChange={this.handleChange}>
+                                <option selected='selected' value='Choose Character'>Choose Character</option>
                                 {this.state.party.map((member, i) => (
                                     <option value={member.character_name}>{member.character_name}</option>
                                     ))}

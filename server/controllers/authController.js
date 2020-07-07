@@ -50,7 +50,7 @@ async function logout(req, res){
     return res.status(200).send(req.session);
 }
 async function getUser(req, res){
-    console.log('AC53: ', req.session.user)
+    // console.log('AC53: ', req.session.user)
     if(req.session.user){
         res.json(req.session.user)
     } else {

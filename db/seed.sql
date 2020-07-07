@@ -18,6 +18,7 @@ CREATE TABLE character (
     campaign_id INT,
     player_id INT,
     character_name VARCHAR(200),
+    token TEXT,
     class VARCHAR(200),
     party_role VARCHAR(200),
     lvl INT,
