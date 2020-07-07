@@ -5,7 +5,12 @@
 .editButton{
     width: 10vw;
 }
-.editCharacter{
+#editCharacter{
     display: flex;
     flex-direction: column;
+}
+#createCharacter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

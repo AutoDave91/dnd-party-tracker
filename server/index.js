@@ -41,8 +41,9 @@ app.get('/auth/logout', ac.logout)
 // party fetch and character manipulation
 app.get('/api/party', cc.getParty)
 app.put('/api/party', cc.longRest)
-app.put('/api/character', cc.editCharacter)
+app.put('/api/character', cc.combatCharacter)
 app.get('/api/characters', cc.userCharacters)
+app.put('/api/character/edit', cc.editCharacter)
 // initiative tracker
 app.get('/api/initiative', ic.getInit)
 app.post('/api/initiative', ic.rolledInit)

@@ -30,7 +30,7 @@ class Header extends Component {
                     </section>
                 ) : (
                     <section className='header-side'>
-                        <h1>Tank/Healer Guide</h1>
+                        <h1>Tank/Healer Helper</h1>
                     </section>
                 )}
                 <section className='header-center'>

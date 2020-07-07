@@ -17,13 +17,10 @@ function addCharacter(req, res){
     // receives all stats including campaign
     // use add_character.sql
 }
-async function editCharacter(req, res){
-    // use edit_character.sql
-    // 
+async function combatCharacter(req, res){
+    // use combat_character.sql
     let {campaign, target, effect, hp_change, adventurer} = req.body
-    // console.log('CC24: ', campaign, target, effect, hp_change)
-    // let adventurer = characters.find(({name}) => name === target)
-    // console.log(`CC26: ${adventurer.current_hp}`)
+
     if(effect === 'heal'){
         if(adventurer.current_hp + +hp_change > adventurer.max_hp){
             adventurer.current_hp = adventurer.max_hp
@@ -56,11 +53,9 @@ async function editCharacter(req, res){
         adventurer.health = 'half'
     }
 
-    let character_class = adventurer.class
-    let {campaign_id, character_id, ac, active, cha, character_name, con, current_hp, dex, intel, lvl, max_hp, party_role, strength, temp_hp, token, wis, health} = adventurer
-    // console.log(`CC48: `, character_name, character_class, party_role, lvl, max_hp, ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, active, token, character_id)
+    let {campaign_id, character_id, current_hp, lvl, temp_hp, health} = adventurer
     const db = req.app.get('db');
-    db.edit_character(character_name, character_class, party_role, lvl, max_hp, ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, health, active, token, character_id, campaign_id)
+    db.combat_character(lvl, current_hp, temp_hp, health, character_id, campaign_id)
         .then(response => res.status(200).json(response))
         .catch(()=>{res.sendStatus(500)})
         
@@ -90,12 +85,20 @@ async function userCharacters(req, res){
         .then(response => res.status(200).json(response))
         .catch(()=> res.sendStatus(500))
 }
+async function editCharacter(req, res){
+    // character_name, character_class, party_role, lvl, max_hp, ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, active, token, character_id, player_id
+    const db = req.app.get('db')
+    db.editCharacter()
+        .then()
+        .catch()
+}
 
 module.exports = {
     addCampaign,
     addCharacter,
     getParty,
-    editCharacter,
+    combatCharacter,
     longRest,
-    userCharacters
+    userCharacters,
+    editCharacter
 }

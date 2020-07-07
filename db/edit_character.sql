@@ -20,4 +20,4 @@ active = $16,
 token = $17
 WHERE character_id = $18;
 SELECT * FROM character
-WHERE campaign_id = $19 AND active = true
+WHERE player_id = $19

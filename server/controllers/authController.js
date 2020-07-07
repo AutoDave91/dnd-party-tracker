@@ -15,7 +15,7 @@ async function register(req, res){
     // console.log(req.body)
     
     if(existingUser > 0){
-        console.log('Choose another username');
+        console.log('username already taken')
     } else {
         const registeredUser = await db.add_user([username, hash])
         const user = registeredUser[0];
