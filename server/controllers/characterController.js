@@ -46,18 +46,24 @@ async function editCharacter(req, res){
     } else if(effect === 'level'){
         adventurer.lvl += 1
     }
+
+    let half = adventurer.max_hp / 2
+    if(adventurer.current_hp === 0){
+        adventurer.health = 'downed'
+    } else if (adventurer.current_hp > half){
+        adventurer.health = 'ok'
+    } else if(adventurer.current_hp < half){
+        adventurer.health = 'half'
+    }
+
     let character_class = adventurer.class
-    let {campaign_id, character_id, ac, active, cha, character_name, con, current_hp, dex, intel, lvl, max_hp, party_role, strength, temp_hp, token, wis} = adventurer
-    console.log(`CC48: `, character_name, character_class, party_role, lvl, max_hp, ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, active, token, character_id)
+    let {campaign_id, character_id, ac, active, cha, character_name, con, current_hp, dex, intel, lvl, max_hp, party_role, strength, temp_hp, token, wis, health} = adventurer
+    // console.log(`CC48: `, character_name, character_class, party_role, lvl, max_hp, ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, active, token, character_id)
     const db = req.app.get('db');
-    db.edit_character(character_name, character_class, party_role, lvl, max_hp, ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, active, token, character_id, campaign_id)
-    // .then(db.get_party(campaign_id)
+    db.edit_character(character_name, character_class, party_role, lvl, max_hp, ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, health, active, token, character_id, campaign_id)
         .then(response => res.status(200).json(response))
         .catch(()=>{res.sendStatus(500)})
-    // .catch(()=> res.sendStatus(500))
-
-    // let party = characters.filter(character => character.campaign === campaign)
-    // res.json(party)
+        
 }
 async function getParty(req, res){
     const db = req.app.get('db');

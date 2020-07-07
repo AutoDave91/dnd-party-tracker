@@ -15,8 +15,9 @@ con = $11,
 intel = $12,
 wis = $13,
 cha = $14,
-active = $15,
-token = $16
-WHERE character_id = $17;
+health = $15,
+active = $16,
+token = $17
+WHERE character_id = $18;
 SELECT * FROM character
-WHERE campaign_id = $18 AND active = true
+WHERE campaign_id = $19 AND active = true
