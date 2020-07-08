@@ -48,8 +48,9 @@ class Profile extends Component {
         // use reducer's state from session to send in the player_id to link characters to their user.
         this.setState({edit: false})
     }
-    handleChange(){
+    handleChange(e){
         // handle inputs
+        this.setState({[e.target.name]: e.target.value})
     }
     engageToggle(member){
         // console.log(member)
@@ -75,21 +76,21 @@ class Profile extends Component {
                             ) : (
                                 <div className='member' id='editCharacter'>
                                     <h3>Token Image</h3>
-                                    <h3>Name: <input placeholder={name} /></h3>
-                                    <h3>Class: <input placeholder={character_class} /></h3>
-                                    <h3>Party Role: <input placeholder={party_role} /></h3>
-                                    <h3>Level: <input placeholder={lvl} /></h3>
-                                    <h3>Max HP: <input placeholder={max_hp} /></h3>
-                                    <h3>AC: <input placeholder={ac} /></h3>
-                                    <h3>Current HP: <input placeholder={current_hp} /></h3>
-                                    <h3>Temp HP: <input placeholder={temp_hp} /></h3>
-                                    <h3>STR: <input placeholder={strength} /></h3>
-                                    <h3>DEX: <input placeholder={dex} /></h3>
-                                    <h3>CON: <input placeholder={con} /></h3>
-                                    <h3>INT: <input placeholder={intel} /></h3>
-                                    <h3>WIS: <input placeholder={wis} /></h3>
-                                    <h3>CHA: <input placeholder={cha} /></h3>
-                                    <h3>Status for next session: <select>
+                                    <h3>Name: <input onChange={this.handleChange} className='' placeholder={name} /></h3>
+                                    <h3>Class: <input onChange={this.handleChange} className='' placeholder={character_class} /></h3>
+                                    <h3>Party Role: <input onChange={this.handleChange} className='' placeholder={party_role} /></h3>
+                                    <h3>Level: <input onChange={this.handleChange} className='' placeholder={lvl} /></h3>
+                                    <h3>Max HP: <input onChange={this.handleChange} className='' placeholder={max_hp} /></h3>
+                                    <h3>AC: <input onChange={this.handleChange} className='' placeholder={ac} /></h3>
+                                    <h3>Current HP: <input onChange={this.handleChange} className='' placeholder={current_hp} /></h3>
+                                    <h3>Temp HP: <input onChange={this.handleChange} className='' placeholder={temp_hp} /></h3>
+                                    <h3>STR: <input onChange={this.handleChange} className='' placeholder={strength} /></h3>
+                                    <h3>DEX: <input onChange={this.handleChange} className='' placeholder={dex} /></h3>
+                                    <h3>CON: <input onChange={this.handleChange} className='' placeholder={con} /></h3>
+                                    <h3>INT: <input onChange={this.handleChange} className='' placeholder={intel} /></h3>
+                                    <h3>WIS: <input onChange={this.handleChange} className='' placeholder={wis} /></h3>
+                                    <h3>CHA: <input onChange={this.handleChange} className='' placeholder={cha} /></h3>
+                                    <h3>Status for next session: <select onChange={this.handleChange} className='active'>
                                         <option>Here</option>
                                         <option>Away</option>
                                     </select></h3>
@@ -103,28 +104,28 @@ class Profile extends Component {
                     )}
                 </section>
                 <section className='member' id='createCharacter'>
-                    <select>
-                        <option>TOA</option>
-                        <option>Winds of Change</option>
+                    <select onChange={this.handleChange} className='campaign_id'>
+                        <option value='1'>TOA</option>
+                        <option value='2'>Winds of Change</option>
                     </select>
                     <h3>token image uploads coming soon</h3>
-                    <input placeholder='Name' />
-                    <input placeholder='Class' />
-                    <input placeholder='Party Role' />
-                    <input placeholder='Level' />
-                    <input placeholder='Max HP' />
-                    <input placeholder='AC' />
-                    <input placeholder='Current HP' />
-                    <input placeholder='Temp HP' />
-                    <input placeholder='STR' />
-                    <input placeholder='DEX' />
-                    <input placeholder='CON' />
-                    <input placeholder='INT' />
-                    <input placeholder='WIS' />
-                    <input placeholder='CHA' />
-                    <select>
-                        <option>Here</option>
-                        <option>Away</option>
+                    <input onChange={this.handleChange} className='' placeholder='Name' />
+                    <input onChange={this.handleChange} className='' placeholder='Class' />
+                    <input onChange={this.handleChange} className='' placeholder='Party Role' />
+                    <input onChange={this.handleChange} className='' placeholder='Level' />
+                    <input onChange={this.handleChange} className='' placeholder='Max HP' />
+                    <input onChange={this.handleChange} className='' placeholder='AC' />
+                    <input onChange={this.handleChange} className='' placeholder='Current HP' />
+                    <input onChange={this.handleChange} className='' placeholder='Temp HP' />
+                    <input onChange={this.handleChange} className='' placeholder='STR' />
+                    <input onChange={this.handleChange} className='' placeholder='DEX' />
+                    <input onChange={this.handleChange} className='' placeholder='CON' />
+                    <input onChange={this.handleChange} className='' placeholder='INT' />
+                    <input onChange={this.handleChange} className='' placeholder='WIS' />
+                    <input onChange={this.handleChange} className='' placeholder='CHA' />
+                    <select onChange={this.handleChange} className='active'>
+                        <option value='true'>Here</option>
+                        <option value='false'>Away</option>
                     </select>
                     <button onClick={this.handleClick}>Create Character</button>
                 </section>
