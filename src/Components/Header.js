@@ -35,7 +35,7 @@ class Header extends Component {
                 )}
                 <section className='header-center'>
                     {/* <Link to='/'><img className='header-img' src='https://avatars1.githubusercontent.com/u/44700233?s=460&v=4' alt='logo'/></Link> */}
-                    <Link to='/'><h1 className='title'>Tank/Healer Helper</h1></Link>
+                    <Link to='/'><h1 className='title'>Party Tracker</h1></Link>
                     <Link to='/'><button className='home'>home</button></Link>
                 </section>
                 {this.props.reducer.user.username ? (
