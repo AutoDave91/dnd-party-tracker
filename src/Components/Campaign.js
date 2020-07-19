@@ -42,7 +42,7 @@ class Campaign extends Component {
     }
     handleClick(e){
         // console.log(this.state.party)
-        let {campaign_id, party, hp_change, target, hp_threshold, initiative} = this.state;
+        let {campaign_id, party, hp_change, target} = this.state;
         let {name} = e.target;
         console.log(target, party)
         let adventurerMatch = []

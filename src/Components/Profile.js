@@ -68,8 +68,24 @@ class Profile extends Component {
         this.setState({new: true})
         // console.log(this.state)
     }
+    checkUploadResult = (error,resultEvent) => {
+        if (resultEvent.event === "success") {
+            console.log("Picture uploaded successfully")
+            console.log(resultEvent.info.url);
+            this.setState({url: resultEvent.info.url});
+        }
+    };
 
     render(){
+        const widget = window.cloudinary.createUploadWidget(
+            {
+            cloudName: "party-tracker",
+            uploadPreset: "dqfttusm",
+            sources: ["local", "url", "dropbox", "facebook", "instagram"]
+            },
+            (error, result) => {
+            this.checkUploadResult(error, result);
+            });
         // let {campaign_id, character_id, token, character_name, party_role, lvl, character_class, max_hp, character_ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, health, active} = this.state
         return(
             <main className='Profile'>
