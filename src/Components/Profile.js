@@ -77,16 +77,18 @@ class Profile extends Component {
     };
 
     render(){
-        const widget = window.cloudinary.createUploadWidget(
-            {
-            cloudName: "party-tracker",
-            uploadPreset: "dqfttusm",
-            sources: ["local", "url", "dropbox", "facebook", "instagram"]
-            },
-            (error, result) => {
-            this.checkUploadResult(error, result);
-            });
+        // const widget = window.cloudinary.createUploadWidget(
+        //     {
+        //     cloudName: "party-tracker",
+        //     uploadPreset: "dqfttusm",
+        //     sources: ["local", "url", "dropbox", "facebook", "instagram"]
+        //     },
+        //     (error, result) => {
+        //     this.checkUploadResult(error, result);
+        //     });
+
         // let {campaign_id, character_id, token, character_name, party_role, lvl, character_class, max_hp, character_ac, current_hp, temp_hp, strength, dex, con, intel, wis, cha, health, active} = this.state
+
         return(
             <main className='Profile'>
                 <h1>{this.props.reducer.user.username}'s Characters</h1>

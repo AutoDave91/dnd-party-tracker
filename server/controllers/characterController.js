@@ -18,6 +18,7 @@ function addCharacter(req, res){
     // use add_character.sql
 }
 async function combatCharacter(req, res){
+    console.log('hit')
     // use combat_character.sql
     let {campaign, target, effect, hp_change, adventurer} = req.body
 
@@ -55,6 +56,7 @@ async function combatCharacter(req, res){
 
     let {campaign_id, character_id, current_hp, lvl, temp_hp, health} = adventurer
     const db = req.app.get('db');
+    // console.log(lvl, current_hp, temp_hp, health, character_id, campaign_id)
     db.combat_character(lvl, current_hp, temp_hp, health, character_id, campaign_id)
         .then(response => res.status(200).json(response))
         .catch(()=>{res.sendStatus(500)})

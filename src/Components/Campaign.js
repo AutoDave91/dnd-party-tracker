@@ -44,16 +44,16 @@ class Campaign extends Component {
         // console.log(this.state.party)
         let {campaign_id, party, hp_change, target} = this.state;
         let {name} = e.target;
-        console.log(target, party)
+        // console.log(target, party)
         let adventurerMatch = []
         for(let i = 0; i < party.length; i++){
-            console.log(party[i].character_name)
+            // console.log(party[i].character_name)
             if(party[i].character_name === target){
                 adventurerMatch.push(party[i])
             }
         }
         let adventurer = adventurerMatch[0]
-        console.log(adventurerMatch, adventurer)
+        // console.log(adventurerMatch, adventurer)
         
         // --------Level manipulation-------
         if(name === 'lvl_change'){
