@@ -29,6 +29,7 @@ class Home extends Component {
                     {/* <option value='sw5e1'>sw5e Campaign 1</option> */}
                     <option value='TOA'>Tomb of Annihilation</option>
                     <option value='Winds of Change'>Winds of Change</option>
+                    <option value='SAS'>Salt and Sand</option>
                 </select>
                 {option ? (
                     <Link to={`/campaign/${option}`}><button>Visit Campaign</button></Link>
